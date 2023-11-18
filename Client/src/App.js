@@ -1,9 +1,11 @@
-import React from 'react'
-
-const App = () => {
+import "./App.css";
+import LandingPage from "./Pages/Landing";
+function App() {
   return (
-    <div>Hello World</div>
-  )
+    <div className="font-montserrat">
+    <LandingPage />
+    </div>
+  );
 }
 
-export default App
+export default App;
