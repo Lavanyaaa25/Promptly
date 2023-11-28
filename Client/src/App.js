@@ -1,9 +1,11 @@
 import "./App.css";
 import LandingPage from "./Pages/Landing";
+import UserProfile from "./Pages/Profile";
 function App() {
   return (
     <div className="font-montserrat">
-    <LandingPage />
+    {/* <LandingPage /> */}
+    <UserProfile />
     </div>
   );
 }
