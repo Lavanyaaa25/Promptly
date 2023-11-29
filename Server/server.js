@@ -20,13 +20,15 @@ app.post('/register', async (req,res) => {
     try {
         const newPassword = await bcrypt.hash(req.body.password, 10)
         await User.create({
-            name: req.body.name,
+            username: req.body.name,
             email: req.body.email,
-            password: newPassword
+            password: newPassword,
+            posts:[],
+            saved:[]
         })
         res.json({ status: 'ok', message: 'Registered' });
     } catch (err) {
-        res.json({ status: 'error', error: 'Duplicate email' })
+        res.json({ status: 'error', error: 'Duplicate email or username' })
     }
 })
 
