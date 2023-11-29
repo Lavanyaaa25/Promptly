@@ -30,4 +30,24 @@ app.post('/register', async (req,res) => {
     }
 })
 
+// ###################################### LOG IN ######################################
+
+app.post('/login', async (req,res) => {
+    const test = await User.findOne({
+        email: req.body.email
+    })
+    if (!test) {
+        return res.json({ status: 'error', message: 'Invalid email or password' });
+    }
+    const validatePassword = await bcrypt.compare(
+        req.body.password,
+        test.password
+    )
+    if (validatePassword) {
+        res.json({ status: 'ok', message: 'Logged in' });
+    } else {
+        res.json({ status: 'error', message: 'Invalid email or password' });
+    }
+})
+
 app.listen(3030, () => console.log("Server running on port 3030"));

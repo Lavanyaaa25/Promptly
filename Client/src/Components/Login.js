@@ -50,7 +50,7 @@ const Login = ({formType, setFormType}) => {
       >
         <motion.button
           type="submit"
-          className="text-white py-3 px-5 rounded border-2 border-transparent"
+          className="text-white py-3 px-5 rounded border-2 border-transparent "
           style={{
             backgroundColor: '#1A1A2E',
           }}

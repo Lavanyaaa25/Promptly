@@ -1,34 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const UserProfile = () => {
-  const [userData, setUserData] = useState({
-    username: 'JohnDoe', // Replace with user's actual data
-    email: 'johndoe@example.com', // Replace with user's actual data
-    // Add more user data fields as needed
-  });
-
-  // Example profile image URL
-  const userProfileImage = 'https://via.placeholder.com/150';
-
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)', color: 'white' }}>
-      {/* User Profile Card */}
-      <div className="p-6 mt-8 ml-8 bg-transparent rounded-md max-w-sm flex items-center border border-gray-500">
-        <div className="rounded-full overflow-hidden w-20 h-20">
-          <img src={userProfileImage} alt="Profile" className="w-full h-full object-cover" />
-        </div>
-        <div className="ml-4">
-          <h1 className="text-2xl font-bold">{userData.username}</h1>
-          <div className="mt-1">
-            <p> {userData.email}</p>
-            {/* Render other user data fields */}
-          </div>
-          {/* You can add edit options or additional user information here */}
-        </div>
+    <div className="min-h-screen text-white relative flex flex-col gap-9" style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}>
+      {/* Promptly LOGO */}
+      <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
+        Promptly
       </div>
 
-      {/* Rest of the content */}
-      {/* Add your other page content below the profile card */}
+      {/* Border Box containing User Profile section and Buttons */}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+  <div className="border border-white rounded-lg p-4 w-3/4">
+    {/* User Profile section */}
+    <div className="flex items-center mb-4">
+      {/* Circular Profile Photo */}
+      <div className="rounded-full h-16 w-16 overflow-hidden border-2 border-white flex-shrink-0">
+        <img
+          className="h-full w-full object-cover"
+          src="https://via.placeholder.com/150"
+          alt="Profile"
+        />
+      </div>
+
+      {/* Username */}
+      <div className="ml-3 text-lg font-semibold text-white">
+        JohnDoe {/* Replace with dynamic username */}
+      </div>
+    </div>
+
+  
+    <div className="flex justify-center">
+      <button className=" hover:bg-blue-700 text-black font-bold py-2 px-3 rounded mr-3 bg-orange">
+        My Prompts
+      </button>
+      <button className=" hover:bg-blue-700 text-black font-bold py-2 px-3 rounded mr-3 bg-orange">
+        Saved
+      </button>
+             
+
+    </div>
+  </div>
+</div>
+
+      
     </div>
   );
 };

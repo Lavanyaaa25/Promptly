@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import SignUp from '../Components/SignUp';
 import Login from '../Components/Login';
 
+
 const LandingPage = () => {
 
   const [formType, setFormType] = useState(false);
@@ -17,7 +18,7 @@ const LandingPage = () => {
     >
       {/* Promptly logo */}
       <motion.div
-        className="absolute top-4 left-4  md:text-2xl font-bold text-sm"
+        className="absolute top-4 left-4  md:text-2xl font-bold text-sm text-purple"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
@@ -44,12 +45,12 @@ const LandingPage = () => {
            
           >
             <motion.h1
-              className="text-xl md:text-6xl font-bold mb-2 md:mb-6"
+              className="text-xl md:text-6xl font-bold mb-2 md:mb-6 "
             >
               Ignite & Exchange Creativity
             </motion.h1>
             <motion.p
-              className="text-sm md:text-2xl mb-8 mx-4"
+              className="text-sm md:text-2xl mb-8 mx-4 text-gray"
             >
               Join the prompt-sharing community—where creativity finds new beginnings.
             </motion.p>
