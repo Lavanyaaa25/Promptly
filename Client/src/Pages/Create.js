@@ -12,6 +12,8 @@ const Create = () => {
         prompt: prompt,
         tags: tags
       }
+      setPrompt('');
+      setTags('');
       const response = await fetch('http://localhost:3030/publish',{
         method: 'POST',
         headers: {
@@ -19,7 +21,11 @@ const Create = () => {
         },
         body:JSON.stringify(data),
       });
-      alert("Your prompt has been published!!");
+      const res = await response.json();
+      if(res.status === 'ok')
+      alert(res.message);
+    else
+      alert(res.message);
     }
     catch(err){
       alert("An error occured");
