@@ -1,8 +1,34 @@
-import React from 'react'
+import {React, useState} from 'react';
 
 const Create = () => {
+  const [prompt, setPrompt]=useState('');
+  const [tags, setTags]=useState('');
+
+  async function handleSubmit (e){
+    e.preventDefault();
+    try{
+      const data = {
+        id: new Date().getTime(),
+        prompt: prompt,
+        tags: tags
+      }
+      const response = await fetch('http://localhost:3030/publish',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(data),
+      });
+      alert("Your prompt has been published!!");
+    }
+    catch(err){
+      alert("An error occured");
+    }
+    
+  }
+
   return (
-    <div className="min-h-screen text-white relative flex flex-col gap-9" 
+    <div className ="min-h-screen text-white relative flex flex-col gap-9" 
     style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}>
 
       {/* Promptly LOGO */}
@@ -22,17 +48,16 @@ const Create = () => {
       </p>
     </div>
     <div className="ml-10">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label className="text-xl font-semibold text-pink">Enter Your Prompt:</label><br/>
-        <textarea className="border border-gray-600 px-2 py-1 text-[15px] h-[180px] w-[584px] rounded-lg focus bg-transparent resize-none mb-3 mt-2" placeholder="e.g:Time-travel mishap" type="text"></textarea><br/>
+        <textarea className="border border-gray-600 px-2 py-1 text-[15px] h-[180px] w-[584px] rounded-lg focus bg-transparent resize-none mb-3 mt-2" placeholder="e.g:Time-travel mishap" type="text" value={prompt} onChange={(e) => setPrompt(e.target.value)} required></textarea><br/>
         <label className="text-xl font-semibold text-pink">Enter Tags:</label><br/>
-        <input className="border border-gray-600 text-[15px] h-10 w-[584px] rounded-md focus bg-transparent mt-2 px-2" placeholder="e.g. #coding, #development"/><br/>
+        <input type='text' className="border border-gray-600 text-[15px] h-10 w-[584px] rounded-md focus bg-transparent mt-2 px-2" placeholder="e.g. #coding, #development" value={tags} onChange={(e) => setTags(e.target.value)}/><br/>
         
         <input
   className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light  cursor-pointer border-none"
   value="Publish"
   type="submit"
- 
 />
        
       </form>
