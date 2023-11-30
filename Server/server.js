@@ -65,9 +65,9 @@ app.post('/publish', async (req,res) => {
             prompt: data.prompt,
             tags: data.tags
         })
-        res.json({status: 'ok', message: 'Your prompt has been published'})
+        res.status(200);
     }catch(err){
-        res.json({status: 'error', message: 'An error occured'})
+        res.status(400);
     }
 })
     
