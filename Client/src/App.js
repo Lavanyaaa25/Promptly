@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/create" element={<Create/>}/>
-      <Route path="/profile" element={<Profile/>}/>
+      <Route path="/users/:userName" element={<Profile/>}/>
     </Routes>
 
     </div>

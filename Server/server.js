@@ -23,7 +23,7 @@ app.post('/register', async (req,res) => {
     try {
         const newPassword = await bcrypt.hash(req.body.password, 10)
         await User.create({
-            username: req.body.name,
+            username: req.body.username,
             email: req.body.email,
             password: newPassword,
             posts:[],
@@ -68,6 +68,21 @@ app.post('/publish', async (req,res) => {
         res.json({status: 'ok', message: 'Your prompt has been published'})
     }catch(err){
         res.json({status: 'error', message: 'An error occured'})
+    }
+})
+
+// ###################################### USER'S PROFILE ######################################
+
+app.post('/users/profile', async (req, res) => {
+    try{
+        const username = req.body.userName;
+        const user = await User.findOne({username: username})
+        if(user)
+            res.json({status: 'ok', user: user});
+        else
+            res.json({status: 'error'});
+    }catch(err){
+        res.json({status: 'error', message: 'Invalid username'});
     }
 })
     
