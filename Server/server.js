@@ -1,13 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const User = require('./Models/User');
+const Prompt = require('./Models/Prompt');
 const bcrypt = require('bcryptjs');
 
 const app = express();
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 // ################################ MONGO DB CONNECTION ################################
 
@@ -20,7 +23,7 @@ app.post('/register', async (req,res) => {
     try {
         const newPassword = await bcrypt.hash(req.body.password, 10)
         await User.create({
-            username: req.body.name,
+            username: req.body.username,
             email: req.body.email,
             password: newPassword,
             posts:[],
@@ -44,12 +47,44 @@ app.post('/login', async (req,res) => {
     const validatePassword = await bcrypt.compare(
         req.body.password,
         test.password
-    )
-    if (validatePassword) {
-        res.json({ status: 'ok', message: 'Logged in' });
-    } else {
-        res.json({ status: 'error', message: 'Invalid email or password' });
+        )
+        if (validatePassword) {
+            res.json({ status: 'ok', message: 'Logged in' });
+        } else {
+            res.json({ status: 'error', message: 'Invalid email or password' });
+        }
+    })
+    
+// ###################################### PUBLISH PROMPT ######################################
+
+app.post('/publish', async (req,res) => {
+    try{
+        const data = req.body;
+        await Prompt.create({
+            id: data.id,
+            prompt: data.prompt,
+            tags: data.tags
+        })
+        res.json({status: 'ok', message: 'Your prompt has been published'})
+    }catch(err){
+        res.json({status: 'error', message: 'An error occured'})
     }
 })
+
+// ###################################### USER'S PROFILE ######################################
+
+app.post('/users/profile', async (req, res) => {
+    try{
+        const username = req.body.userName;
+        const user = await User.findOne({username: username})
+        if(user)
+            res.json({status: 'ok', user: user});
+        else
+            res.json({status: 'error'});
+    }catch(err){
+        res.json({status: 'error', message: 'Invalid username'});
+    }
+})
+    
 
 app.listen(3030, () => console.log("Server running on port 3030"));

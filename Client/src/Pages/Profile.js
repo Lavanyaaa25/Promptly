@@ -1,17 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {useParams} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faListAlt } from '@fortawesome/free-solid-svg-icons';
 import PromptCard from '../Components/Card';
 
 const UserProfile = () => {
+  const [isRegistered, setIsRegistered] = useState(true);
+  // const [isAuthorized, setIsAuthorized] = useState(false);
+  const [username, setUsername] = useState('');
+  const [promptCount, setPromptCount] = useState(0);
+  // const [prompts, setPrompts] = useState([]); These will be used later
+  // const [saved, setSaved] = useState([]);
   const [selectedOption, setSelectedOption] = useState('My Prompts');
-  const promptCount = 10; // Replace with actual prompt count
   const likesCount = 25; // Replace with actual likes count
-
+  const {userName} = useParams();
+  useEffect(() => {
+      async function getDetails(){
+        const response = await fetch('http://localhost:3030/users/profile',{
+          method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({userName: userName})
+        })
+        const data = await response.json();
+        if(data.status === 'ok'){
+          setIsRegistered(true);
+          setUsername(data.user.username);
+          setPromptCount(data.user.posts.length);
+        }else{
+          setIsRegistered(false);
+        }
+    }
+    getDetails();
+  },[userName])
+  
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
+  if(!isRegistered)
+    return (
+    <div className="min-h-screen text-white relative flex flex-col gap-9" style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}>
+      {/* Promptly LOGO */}
+      <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
+        Promptly
+      </div>
+      <h1 className='ml-4 mt-8 font-semibold text-6xl'>USER DOES NOT EXISTS :(</h1>
+    </div>
+    )
+  else
   return (
     <div className="min-h-screen text-white relative flex flex-col gap-9" style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}>
       {/* Promptly LOGO */}
@@ -36,7 +74,7 @@ const UserProfile = () => {
             {/* Username and Counts */}
             <div className="ml-6 flex flex-col"> {/* Added margin */}
               <div className="text-2xl font-semibold text-white mb-1">
-                JohnDoe {/* Replace with dynamic username */}
+                {username} 
               </div>
               <div className="text-sm text-gray-300 flex items-center">
                 <FontAwesomeIcon icon={faListAlt} className="mr-1 text-yellow-400" />
