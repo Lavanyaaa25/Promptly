@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import PromptCard from '../Components/Card';
 
 const UserProfile = () => {
   const [selectedOption, setSelectedOption] = useState('My Prompts');
@@ -90,6 +91,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+      <PromptCard promptText={"heeloo"}/>
     </div>
   );
 };
