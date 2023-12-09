@@ -1,12 +1,19 @@
 import {React, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
   const [prompt, setPrompt]=useState('');
   const [tags, setTags]=useState('');
+  const navigate = useNavigate();
 
   async function handleSubmit (e){
     e.preventDefault();
     try{
+      const token = localStorage.getItem('token');
+      if(!token){
+        navigate('/');
+        return;
+      }
       const data = {
         id: new Date().getTime(),
         prompt: prompt,
@@ -17,6 +24,7 @@ const Create = () => {
       const response = await fetch('http://localhost:3030/publish',{
         method: 'POST',
         headers: {
+          'access-token': token,
           'Content-Type': 'application/json',
         },
         body:JSON.stringify(data),

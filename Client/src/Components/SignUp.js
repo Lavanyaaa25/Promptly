@@ -1,8 +1,50 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { motion } from 'framer-motion'
+import {useNavigate} from 'react-router-dom'
 const Signup = ({formType, setFormType}) => {
 
-    function toggleForm(){
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');  
+  const navigate = useNavigate();
+
+  async function handleSubmit(e){
+    e.preventDefault();
+
+    try{
+      const details = {
+        username: username,
+        email: email,
+        password: password
+      };
+      
+      setEmail('');setPassword('');setUsername('');
+  
+      const response = await fetch('http://localhost:3030/register',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body:JSON.stringify(details),
+        });
+  
+        const data = await response.json();
+  
+        if(data.status === 'ok'){
+          localStorage.removeItem('token');
+          localStorage.setItem('token', data.user);
+          alert(data.message);
+          navigate('/create');
+        }else{
+          alert(data.message);
+        }
+    }
+    catch(err){
+      alert("ERROR!!!");
+    }
+  }
+  
+  function toggleForm(){
         setFormType(!formType);
     }
 
@@ -18,6 +60,7 @@ const Signup = ({formType, setFormType}) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
+            onSubmit={handleSubmit}
           >
             <motion.h3
               className="text-3xl mb-6 text-center text-white font-bold py-4"
@@ -29,27 +72,33 @@ const Signup = ({formType, setFormType}) => {
             </motion.h3>
             <motion.input
               type="text"
-              placeholder="Name"
-              className="mb-4 p-2 block w-full bg-transparent text-white rounded border-0 border-b-2 border-gray-600"
+              placeholder="Username"
+              className="mb-4 p-2 block w-full bg-transparent text-white rounded border-0 border-b-2 border-gray-600 focus:outline-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.5 }}
+              value={username}
+              onChange={(e) => {setUsername(e.target.value)}}
             />
               <motion.input
               type="email"
               placeholder="Email"
-              className="mb-4 p-2 block w-full bg-transparent text-white rounded border-0 border-b-2 border-gray-600"
+              className="mb-4 p-2 block w-full bg-transparent text-white rounded border-0 border-b-2 border-gray-600 focus:outline-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.5 }}
+              value={email}
+              onChange={(e) => {setEmail(e.target.value)}}
             />
               <motion.input
               type="password"
               placeholder="Password"
-              className="mb-8 p-2 block w-full bg-transparent text-white rounded border-0 border-b-2 border-gray-600"
+              className="mb-8 p-2 block w-full bg-transparent text-white rounded border-0 border-b-2 border-gray-600 focus:outline-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.5 }}
+              value={password}
+              onChange={(e) => {setPassword(e.target.value)}}
             />
             <motion.div
               className="flex justify-center mb-4"

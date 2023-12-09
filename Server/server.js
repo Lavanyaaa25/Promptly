@@ -1,11 +1,13 @@
+require('dotenv').config()
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const User = require('./Models/User');
 const Prompt = require('./Models/Prompt');
 const bcrypt = require('bcryptjs');
-
 const app = express();
 
 app.use(express.json());
@@ -22,16 +24,26 @@ mongoose.connect('mongodb://127.0.0.1:27017/Promptly').then(() => console.log('C
 app.post('/register', async (req,res) => {
     try {
         const newPassword = await bcrypt.hash(req.body.password, 10)
-        await User.create({
+        const user = await User.create({
             username: req.body.username,
             email: req.body.email,
             password: newPassword,
             posts:[],
             saved:[]
         })
-        res.json({ status: 'ok', message: 'Registered' });
+        const token =  jwt.sign(
+            {
+                username: user.username,
+                email: user.email,
+                posts: user.posts,
+                saved: user.saved
+            },
+            process.env.ACCESS_TOKEN_SECRET
+        );
+        res.json({ status: 'ok', message: 'Registered', user: token });
     } catch (err) {
-        res.json({ status: 'error', error: 'Duplicate email or username' })
+        console.log(err);
+        res.json({ status: 'error', message: 'Duplicate email or username', user: false })
     }
 })
 
@@ -49,7 +61,16 @@ app.post('/login', async (req,res) => {
         test.password
         )
         if (validatePassword) {
-            res.json({ status: 'ok', message: 'Logged in' });
+            const token =  jwt.sign(
+                {
+                    username: test.username,
+                    email: test.email,
+                    posts: test.posts,
+                    saved: test.saved
+                },
+                process.env.ACCESS_TOKEN_SECRET
+            );
+            res.json({ status: 'ok', message: 'Logged in', user: token });
         } else {
             res.json({ status: 'error', message: 'Invalid email or password' });
         }
@@ -60,11 +81,20 @@ app.post('/login', async (req,res) => {
 app.post('/publish', async (req,res) => {
     try{
         const data = req.body;
-        await Prompt.create({
+        const token = req.headers['access-token'];
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const prompt = await Prompt.create({
             id: data.id,
             prompt: data.prompt,
             tags: data.tags
         })
+        const user = await User.findOne({username: decoded.username});
+        if(!user){
+            return res.json({status: 'error', message: 'User not Registered'});
+        }
+        user.posts.push(prompt.id);
+        console.log(user);
+        await user.save();
         res.json({status: 'ok', message: 'Your prompt has been published'})
     }catch(err){
         res.json({status: 'error', message: 'An error occured'})
