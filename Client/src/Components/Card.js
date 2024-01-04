@@ -34,7 +34,7 @@ const PromptCard = ({ promptText, userName }) => {
          }}>
       <div className="flex items-start justify-between mb-4">
         <div>
-          <p className="text-white text-lg font-semibold">@JohnDoe</p>
+          <p className="text-white text-lg font-semibold">@{userName}</p>
         </div>
         <div className="flex items-start space-x-2">
           <button

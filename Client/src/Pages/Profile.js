@@ -9,7 +9,7 @@ const UserProfile = () => {
   // const [isAuthorized, setIsAuthorized] = useState(false);
   const [username, setUsername] = useState('');
   const [promptCount, setPromptCount] = useState(0);
-  // const [prompts, setPrompts] = useState([]); These will be used later
+  const [prompts, setPrompts] = useState([]); 
   // const [saved, setSaved] = useState([]);
   const [selectedOption, setSelectedOption] = useState('My Prompts');
   const likesCount = 25; // Replace with actual likes count
@@ -28,6 +28,7 @@ const UserProfile = () => {
           setIsRegistered(true);
           setUsername(data.user.username);
           setPromptCount(data.user.posts.length);
+          setPrompts(data.prompts);
         }else{
           setIsRegistered(false);
         }
@@ -129,7 +130,9 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-      <PromptCard promptText={"heeloo"}/>
+      <div className='flex flex-row flex-wrap gap-1'>
+          {prompts.map((post) => <PromptCard promptText={post.prompt} userName={username}/>)}
+      </div>
     </div>
   );
 };
