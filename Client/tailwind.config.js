@@ -11,12 +11,14 @@ module.exports = {
         'yellow':'rgba(254, 245, 228, 1)',
         'pink':'rgba(243, 219, 233, 1)',
         'red':'rgba(250, 225, 221, 1)',
-        'green':'rgba(182, 204, 192, 1)'
+        'green':'rgba(182, 204, 192, 1)',
+        'light-yel':'rgba(240, 206, 134, 1)'
+        
       },
       fontFamily:{
         montserrat:['Montserrat', 'sans-serif']
       }
-    },
+    }, 
 
   },
   plugins: [],

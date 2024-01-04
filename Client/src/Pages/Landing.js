@@ -11,7 +11,7 @@ const LandingPage = () => {
   return (
     <motion.div
       className="min-h-screen text-white relative flex flex-col items-center justify-center"
-      style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}
+      // style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -50,7 +50,7 @@ const LandingPage = () => {
               Ignite & Exchange Creativity
             </motion.h1>
             <motion.p
-              className="text-sm md:text-2xl mb-8 mx-4 text-gray"
+              className="text-sm md:text-2xl mb-8 mx-4 text-gray font-semibold"
             >
               Join the prompt-sharing community—where creativity finds new beginnings.
             </motion.p>

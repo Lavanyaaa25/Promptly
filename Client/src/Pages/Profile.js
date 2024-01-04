@@ -41,7 +41,7 @@ const UserProfile = () => {
 
   if(!isRegistered)
     return (
-    <div className="min-h-screen text-white relative flex flex-col gap-9" style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}>
+    <div className="min-h-screen text-white relative flex flex-col gap-9">
       {/* Promptly LOGO */}
       <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
         Promptly

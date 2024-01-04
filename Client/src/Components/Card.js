@@ -26,10 +26,11 @@ const PromptCard = ({ promptText, userName }) => {
   };
 
   return (
-    <div className="border border-gray rounded p-4 w-96 h-72 mx-auto mt-4 relative overflow-hidden flex flex-col justify-between"
+    <div className="border border-gray-300 rounded-lg p-4 w-96 h-72 mx-auto mt-4 relative overflow-hidden flex flex-col justify-between"
          style={{
-           backgroundImage: 'linear-gradient(to bottom,#000000,#2E1437)',
-           borderRadius: '20px',
+           backdropFilter: 'blur(10px)',
+           backgroundColor: 'rgba(159,145,204, 0.1)',
+           borderRadius: '20px'
          }}>
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -40,13 +41,13 @@ const PromptCard = ({ promptText, userName }) => {
             onClick={copyToClipboard}
             className="text-white font-bold py-2 px-4 rounded-full"
           >
-            {copied ? <FiCheckCircle /> : <FiCopy />} {/* Conditional rendering of copy icons */}
+            {copied ? <FiCheckCircle /> : <FiCopy />}
           </button>
           <button
             onClick={handleSaveClick}
             className="text-white font-bold py-2 px-4 rounded-full"
           >
-            {saved ? <FiBookmark color="white" fill="white" /> : <IoBookmarkOutline />} {/* Conditional rendering of save icons */}
+            {saved ? <IoBookmarkOutline color="white" fill="white" /> : <IoBookmarkOutline />}
           </button>
         </div>
       </div>
