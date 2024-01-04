@@ -107,14 +107,36 @@ app.post('/users/profile', async (req, res) => {
     try{
         const username = req.body.userName;
         const user = await User.findOne({username: username})
+        const prompts=[];
+        for(var i=0;i<user.posts.length;i++){
+            const prompt = await Prompt.findOne({id: user.posts[i]});
+            prompts.push(prompt);
+        }
         if(user)
-            res.json({status: 'ok', user: user});
+            res.json({status: 'ok', user: user, prompts: prompts});
         else
             res.json({status: 'error'});
     }catch(err){
         res.json({status: 'error', message: 'Invalid username'});
     }
 })
+
+// ###################################### USER'S PROMPTS ######################################
     
+// app.get('/user-prompts', async (req,res) => {
+//     try{
+//         const token = 
+//         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+//         const prompts=[];
+//         for(var i=0;i<decoded.posts.length;i++){
+//             const prompt = await Prompt.findOne({id: decoded.posts[i]});
+//             prompts.push(prompt);
+//         }
+//         res.json({status: 'ok', prompts: prompts});
+//     }catch(err){
+//         console.log(err);
+//         res.json({status: 'error', message: 'Some error occured'});
+//     }
+// })
 
 app.listen(3030, () => console.log("Server running on port 3030"));
