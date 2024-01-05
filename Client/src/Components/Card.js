@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FiCopy, FiBookmark, FiCheckCircle } from 'react-icons/fi'; // Import the required icons
+import { FiCopy,  FiCheckCircle } from 'react-icons/fi'; // Import the required icons
 import { IoBookmarkOutline } from 'react-icons/io5';
 
 const PromptCard = ({ promptText, userName }) => {

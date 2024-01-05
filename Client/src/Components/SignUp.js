@@ -34,7 +34,7 @@ const Signup = ({formType, setFormType}) => {
           localStorage.removeItem('token');
           localStorage.setItem('token', data.user);
           alert(data.message);
-          navigate('/create');
+          navigate('/explore');
         }else{
           alert(data.message);
         }

@@ -121,6 +121,18 @@ app.post('/users/profile', async (req, res) => {
     }
 })
 
+// ###################################### INITIAL FEED ######################################
+
+app.get('/prompts',async (req,res) => {
+    try{
+        const prompts = await Prompt.find();
+        res.json({status: 'ok', prompts:prompts});
+    }
+    catch(err){
+        res.json({status: 'error', message: 'Error 404'});
+    }
+})
+
 // ###################################### USER'S PROMPTS ######################################
     
 // app.get('/user-prompts', async (req,res) => {
