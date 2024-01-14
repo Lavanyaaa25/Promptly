@@ -85,6 +85,7 @@ app.post('/publish', async (req,res) => {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         const prompt = await Prompt.create({
             id: data.id,
+            username: decoded.username,
             prompt: data.prompt,
             tags: data.tags
         })
@@ -133,22 +134,19 @@ app.get('/prompts',async (req,res) => {
     }
 })
 
-// ###################################### USER'S PROMPTS ######################################
-    
-// app.get('/user-prompts', async (req,res) => {
-//     try{
-//         const token = 
-//         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-//         const prompts=[];
-//         for(var i=0;i<decoded.posts.length;i++){
-//             const prompt = await Prompt.findOne({id: decoded.posts[i]});
-//             prompts.push(prompt);
-//         }
-//         res.json({status: 'ok', prompts: prompts});
-//     }catch(err){
-//         console.log(err);
-//         res.json({status: 'error', message: 'Some error occured'});
-//     }
-// })
+// ###################################### GET LOGGED IN USER ######################################
+
+app.post('/getUser', async (req,res) => {
+    try{
+        const data = req.body;
+        const token = req.headers['access-token'];
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        res.json({status: 'ok', username: decoded.username});
+    }
+    catch(err){
+        console.log(err);
+        res.json({status: 'error', message: 'Internal Error'});
+    }
+})
 
 app.listen(3030, () => console.log("Server running on port 3030"));

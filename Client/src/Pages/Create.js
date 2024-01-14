@@ -46,7 +46,7 @@ const Create = () => {
 
       {/* Promptly LOGO */}
       <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
-        Promptly
+        <span onClick={() => {navigate('/explore')}} className=" hover:cursor-pointer">Promptly</span>
       </div>
 
       {/* Hero section */}

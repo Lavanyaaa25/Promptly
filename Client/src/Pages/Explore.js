@@ -1,11 +1,32 @@
 import {React,useState,useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import PromptCard from '../Components/Card';
+import Photo from '../Assets/user-account.png'
 const Explore = () => {
 
   const [prompts, setPrompts] = useState([]);
+  const [username, setUserName] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getFeed(){
+      const token = localStorage.getItem('token');
+      const response1 = await fetch('http://localhost:3030/getUser',{
+        method: 'POST',
+        headers: {
+          'access-token': token,
+          'Content-Type': 'application/json',
+        }
+      });
+      const user = await response1.json();
+      if(user.status === 'ok')
+      {
+        setUserName(user.username);
+      }
+      else
+      {
+        alert("Server Error");
+      }
       const response = await fetch("http://localhost:3030/prompts", {
         method: 'GET'
       });
@@ -23,14 +44,15 @@ const Explore = () => {
     <div className="min-h-screen text-white relative flex flex-col gap-9" >
       {/* Promptly LOGO */}
       <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
-        Promptly
+        <span onClick={() => navigate('/explore')} className=' hover:cursor-pointer'>Promptly</span>
       </div>
       <div className="absolute top-4 right-8"> {/* Adjusted right margin */}
         <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-white">
           <img
-            src="URL_TO_YOUR_PROFILE_PHOTO"
+            src={Photo}
             alt="Profile"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover hover:cursor-pointer"
+            onClick={() => navigate(`/users/${username}`)}
           />
         </div>
       </div>
@@ -83,7 +105,7 @@ const Explore = () => {
         {/* Cards Section */}
 <div className="flex flex-wrap justify-center gap-16 mt-4"> {/* Increased from gap-8 to gap-16 */}
       {prompts.map((post) => <div className="flex flex-col justify-center gap-16 mt-4 sm:flex-row"> {/* Increased from gap-12 to gap-16 */}
-          <PromptCard promptText={post.prompt} userName="JohnDoe"/>
+          <PromptCard promptText={post.prompt} userName={post.username}/>
         </div>)}
       </div>
 

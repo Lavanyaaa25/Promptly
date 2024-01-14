@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faListAlt } from '@fortawesome/free-solid-svg-icons';
 import PromptCard from '../Components/Card';
+import Photo from '../Assets/user-account.png'
 
 const UserProfile = () => {
   const [isRegistered, setIsRegistered] = useState(true);
@@ -14,6 +16,7 @@ const UserProfile = () => {
   const [selectedOption, setSelectedOption] = useState('My Prompts');
   const likesCount = 25; // Replace with actual likes count
   const {userName} = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
       async function getDetails(){
         const response = await fetch('http://localhost:3030/users/profile',{
@@ -55,7 +58,7 @@ const UserProfile = () => {
     <div className="min-h-screen text-white relative flex flex-col gap-9" style={{ background: 'linear-gradient(to bottom, #1A1A2E, #000000)' }}>
       {/* Promptly LOGO */}
       <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
-        Promptly
+      <span onClick={() => navigate('/explore')} className=' hover:cursor-pointer'>Promptly</span>
       </div>
 
       {/* Border Box containing User Profile section and Buttons */}
@@ -67,7 +70,7 @@ const UserProfile = () => {
             <div className="rounded-full h-24 w-24 overflow-hidden border-2 border-white flex-shrink-0">
               <img
                 className="h-full w-full object-cover"
-                src="https://via.placeholder.com/150"
+                src={Photo}
                 alt="Profile"
               />
             </div>
@@ -131,7 +134,7 @@ const UserProfile = () => {
         </div>
       </div>
       <div className='flex flex-row flex-wrap gap-1'>
-          {prompts.map((post) => <PromptCard promptText={post.prompt} userName={username}/>)}
+          {prompts.map((post) => <PromptCard promptText={post.prompt} userName={post.username}/>)}
       </div>
     </div>
   );
