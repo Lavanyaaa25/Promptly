@@ -1,6 +1,6 @@
-import {React, useState} from 'react';
+import {React,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Header from '../Components/Header';
 const Create = () => {
   const [prompt, setPrompt]=useState('');
   const [tags, setTags]=useState('');
@@ -41,14 +41,12 @@ const Create = () => {
     
   }
 
+
   return (
     <div className ="min-h-screen text-white relative flex flex-col gap-9" >
 
-      {/* Promptly LOGO */}
-      <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
-        <span onClick={() => {navigate('/explore')}} className=" hover:cursor-pointer">Promptly</span>
-      </div>
-
+      <Header />
+      
       {/* Hero section */}
 <div className="w-full flex justify-center items-center">
   <div className="flex flex-col">

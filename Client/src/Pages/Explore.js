@@ -1,7 +1,7 @@
 import {React,useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import PromptCard from '../Components/Card';
-import Photo from '../Assets/user-account.png'
+import Header from '../Components/Header';
 const Explore = () => {
 
   const [prompts, setPrompts] = useState([]);
@@ -39,23 +39,12 @@ const Explore = () => {
     }
     getFeed();
   }, [])
+  
 
   return (
     <div className="min-h-screen text-white relative flex flex-col gap-9" >
       {/* Promptly LOGO */}
-      <div className="ml-4 mt-4 md:text-2xl font-bold text-sm text-purple">
-        <span onClick={() => navigate('/explore')} className=' hover:cursor-pointer'>Promptly</span>
-      </div>
-      <div className="absolute top-4 right-8"> {/* Adjusted right margin */}
-        <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-white">
-          <img
-            src={Photo}
-            alt="Profile"
-            className="h-full w-full object-cover hover:cursor-pointer"
-            onClick={() => navigate(`/users/${username}`)}
-          />
-        </div>
-      </div>
+      <Header/>
       <div className="flex flex-col items-center justify-center mt-4 text-xl md:text-6xl font-bold">
         <h1 className="text-4xl md:text-6xl font-bold text-light-yel text-center">Discover Endless Ideas</h1>
         <div className="mt-2">

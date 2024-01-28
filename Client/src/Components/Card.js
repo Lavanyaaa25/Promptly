@@ -57,7 +57,7 @@ const PromptCard = ({ promptText, userName }) => {
       <div className="flex justify-center flex-wrap gap-1">
         {tags.map((tag, index) => (
           <div key={index} className="rounded-full bg-gray-200 px-2 py-1">
-            <p className="text-sm text-gray-700 bg-slate-600 rounded px-1 py-1">{tag}</p>
+            <p className="text-sm text-gray-700 bg-slate-600 rounded px-2 py-1">{tag}</p>
           </div>
         ))}
       </div>
