@@ -1,32 +1,14 @@
 import {React,useState,useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import PromptCard from '../Components/Card';
 import Header from '../Components/Header';
 const Explore = () => {
 
   const [prompts, setPrompts] = useState([]);
-  const [username, setUserName] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function getFeed(){
       const token = localStorage.getItem('token');
-      const response1 = await fetch('http://localhost:3030/getUser',{
-        method: 'GET',
-        headers: {
-          'access-token': token,
-          'Content-Type': 'application/json',
-        }
-      });
-      const user = await response1.json();
-      if(user.status === 'ok')
-      {
-        setUserName(user.username);
-      }
-      else
-      {
-        alert("Server Error");
-      }
       const response = await fetch("http://localhost:3030/prompts", {
         method: 'GET',
         headers: {
@@ -68,32 +50,6 @@ const Explore = () => {
           </div>
         </div>
       </div>
-      {/* <div className="flex flex-wrap justify-center gap-4 mt-4">
-      <div className="flex justify-center gap-4 mt-4">
-          <PromptCard promptText="Prompt 1" userName="JaneDoe" />
-        </div>
-
-        <div className="flex justify-center gap-4 mt-4">
-          <PromptCard promptText="Prompt 2" userName="JaneDoe" />
-        </div>
-
-        <div className="flex justify-center gap-4 mt-4">
-          <PromptCard promptText="Prompt 3" userName="Alice" />
-        </div>
-
-        <div className="flex justify-center gap-4 mt-4">
-          <PromptCard promptText="Prompt 4" userName="Bob" />
-        </div>
-
-        <div className="flex justify-center gap-4 mt-4">
-          <PromptCard promptText="Prompt 5" userName="Eve" />
-        </div>
-
-        <div className="flex justify-center gap-4 mt-4">
-          <PromptCard promptText="Prompt 6" userName="Charlie" />
-        </div>
-      </div> */} 
-      {/* three in a row */}
      
         {/* Cards Section */}
 <div className="flex flex-wrap justify-center gap-16 mt-4"> {/* Increased from gap-8 to gap-16 */}
