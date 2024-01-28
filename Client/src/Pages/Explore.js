@@ -12,7 +12,7 @@ const Explore = () => {
     async function getFeed(){
       const token = localStorage.getItem('token');
       const response1 = await fetch('http://localhost:3030/getUser',{
-        method: 'POST',
+        method: 'GET',
         headers: {
           'access-token': token,
           'Content-Type': 'application/json',
@@ -28,7 +28,11 @@ const Explore = () => {
         alert("Server Error");
       }
       const response = await fetch("http://localhost:3030/prompts", {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+          'access-token': token,
+          'Content-Type': 'application/json',
+        }
       });
       const data = await response.json();
       if(data.status === 'ok'){

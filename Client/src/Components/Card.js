@@ -22,6 +22,7 @@ const PromptCard = ({ promptText, userName }) => {
   };
 
   const handleSaveClick = () => {
+    console.log(saved);
     setSaved(!saved); // Toggle the saved state
   };
 

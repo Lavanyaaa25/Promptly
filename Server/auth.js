@@ -1,7 +1,7 @@
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 
-export const verifyToken = async (req, res, next) => {
+const verifyToken = async (req, res, next) => {
     try {
       let token = req.header("access-token");
       
@@ -12,6 +12,9 @@ export const verifyToken = async (req, res, next) => {
       req.user = verified;
       next();
     } catch (error) {
+      // console.log(err);
       res.status(400).json({ error: error.message });
     }
   };
+
+module.exports = verifyToken;

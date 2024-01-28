@@ -2,12 +2,34 @@ import {React, useState} from 'react';
 import { motion } from 'framer-motion';
 import SignUp from '../Components/SignUp';
 import Login from '../Components/Login';
-
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
-
+  const navigate = useNavigate();
   const [formType, setFormType] = useState(false);
-
+  useEffect(() => {
+    async function isLoggedIn(){
+      try{
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:3030/getUser',{
+          method: 'GET',
+          headers: {
+            'access-token': token,
+            'Content-Type': 'application/json',
+          }
+        });
+        const data = await response.json();
+        if(data.status === 'ok'){
+          navigate('/explore')
+        }
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+    isLoggedIn();
+  },[navigate]);
   return (
     <motion.div
       className="min-h-screen text-white relative flex flex-col items-center justify-center"
