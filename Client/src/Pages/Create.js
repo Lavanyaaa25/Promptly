@@ -36,7 +36,8 @@ const Create = () => {
       alert(res.message);
     }
     catch(err){
-      alert("An error occured");
+      alert("Unauthorized Access");
+      navigate('/');
     }
     
   }

@@ -19,25 +19,34 @@ const UserProfile = () => {
   const navigate = useNavigate();
   useEffect(() => {
       async function getDetails(){
-        const response = await fetch('http://localhost:3030/users/profile',{
-          method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({userName: userName})
-        })
-        const data = await response.json();
-        if(data.status === 'ok'){
-          setIsRegistered(true);
-          setUsername(data.user.username);
-          setPromptCount(data.user.posts.length);
-          setPrompts(data.prompts);
-        }else{
-          setIsRegistered(false);
-        }
+        try{
+          const token = localStorage.getItem('token');
+          const response = await fetch('http://localhost:3030/users/profile',{
+            method: 'POST',
+              headers: {
+                'access-token': token,
+                'Content-Type': 'application/json',
+              },
+              body:JSON.stringify({userName: userName})
+          })
+          const data = await response.json();
+          if(data.status === 'ok'){
+            setIsRegistered(true);
+            setUsername(data.user.username);
+            setPromptCount(data.user.posts.length);
+            setPrompts(data.prompts);
+          }else{
+            console.log("Hello");
+            setIsRegistered(false);
+          }
+      }
+      catch(err){
+        alert("Unauthorized Access");
+        navigate('/');
+      }
     }
     getDetails();
-  },[userName])
+  },[userName,navigate])
   
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);

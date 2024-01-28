@@ -8,6 +8,7 @@ const cors = require('cors');
 const User = require('./Models/User');
 const Prompt = require('./Models/Prompt');
 const bcrypt = require('bcryptjs');
+const authenticateToken = require('./auth');
 const app = express();
 
 app.use(express.json());
@@ -78,7 +79,7 @@ app.post('/login', async (req,res) => {
     
 // ###################################### PUBLISH PROMPT ######################################
 
-app.post('/publish', async (req,res) => {
+app.post('/publish',authenticateToken, async (req,res) => {
     try{
         const data = req.body;
         const token = req.headers['access-token'];
@@ -104,7 +105,7 @@ app.post('/publish', async (req,res) => {
 
 // ###################################### USER'S PROFILE ######################################
 
-app.post('/users/profile', async (req, res) => {
+app.post('/users/profile',authenticateToken, async (req, res) => {
     try{
         const username = req.body.userName;
         const user = await User.findOne({username: username})
@@ -124,7 +125,7 @@ app.post('/users/profile', async (req, res) => {
 
 // ###################################### INITIAL FEED ######################################
 
-app.get('/prompts',async (req,res) => {
+app.get('/prompts',authenticateToken, async (req,res) => {
     try{
         const prompts = await Prompt.find();
         res.json({status: 'ok', prompts:prompts});
@@ -136,9 +137,8 @@ app.get('/prompts',async (req,res) => {
 
 // ###################################### GET LOGGED IN USER ######################################
 
-app.post('/getUser', async (req,res) => {
+app.get('/getUser', authenticateToken, async (req,res) => {
     try{
-        const data = req.body;
         const token = req.headers['access-token'];
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         res.json({status: 'ok', username: decoded.username});
