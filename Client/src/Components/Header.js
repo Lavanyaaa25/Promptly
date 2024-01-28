@@ -11,7 +11,7 @@ const Header = () => {
         async function getFeed(){
           const token = localStorage.getItem('token');
           const response1 = await fetch('http://localhost:3030/getUser',{
-            method: 'POST',
+            method: 'GET',
             headers: {
               'access-token': token,
               'Content-Type': 'application/json',
