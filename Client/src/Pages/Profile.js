@@ -82,7 +82,7 @@ const UserProfile = () => {
             <div className="flex justify-center">
               <button
                 className={`button-create py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-orange`}
-                onClick={() => navigate('/explore')}
+                onClick={() => navigate('/create')}
               >
                 <FontAwesomeIcon icon={faPlus} className="mr-2" />
                 Create
