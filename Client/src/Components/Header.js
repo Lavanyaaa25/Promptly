@@ -1,8 +1,7 @@
 import {React,useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Photo from '../Assets/user-account.png'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+
 
 const Header = () => {
     const navigate = useNavigate();
