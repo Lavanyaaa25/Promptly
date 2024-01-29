@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faListAlt, faPlus,faBookmark } from '@fortawesome/free-solid-svg-icons';
 import PromptCard from '../Components/Card';
 import Photo from '../Assets/user-account.png';
-import Header from '../Components/Header';
+// import Header from '../Components/Header';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
 const UserProfile = () => {
   const [isRegistered, setIsRegistered] = useState(true);
@@ -47,6 +49,11 @@ const UserProfile = () => {
     }
     getDetails();
   },[userName,navigate])
+
+  const handleSignOut = () => {
+        // Add logic to sign out the user
+        // Redirect to the sign-in page or perform other sign-out actions
+      };
   
 
   if (!isRegistered)
@@ -58,8 +65,22 @@ const UserProfile = () => {
     );
   else
     return (
-      <div className="min-h-screen text-white relative flex flex-col gap-9">
-        <Header/>
+        <div className="min-h-screen text-white relative flex flex-col gap-9">
+          {/* <Header/> */}
+          <div className="flex items-center justify-between">
+      <div className="ml-4  md:text-2xl font-bold text-sm text-purple flex items-center">
+        <span onClick={() => navigate('/explore')} className="hover:cursor-pointer">
+          Promptly
+        </span>
+      </div>
+        <button
+          className={`button-signout py-3 px-2 mr-4 rounded-md cursor-pointer transition-all duration-150 text-md text-pink font-bold`}
+          onClick={handleSignOut}
+        >
+          <FontAwesomeIcon icon={faSignOutAlt} className="mr-1 mt-2" />
+          Log Out
+        </button>
+    </div>
 
         <div className="flex justify-center">
           <div className="border border-white rounded-lg p-4 w-3/4">
