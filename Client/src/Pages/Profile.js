@@ -51,8 +51,8 @@ const UserProfile = () => {
   },[userName,navigate])
 
   const handleSignOut = () => {
-        // Add logic to sign out the user
-        // Redirect to the sign-in page or perform other sign-out actions
+        localStorage.removeItem('token');
+        navigate('/');
       };
   
 
@@ -74,7 +74,7 @@ const UserProfile = () => {
         </span>
       </div>
         <button
-          className={`button-signout  py-3 px-2 mr-4 rounded-md cursor-pointer transition-all duration-150 text-md text-pink font-bold`}
+          className={`button-signout py-3 px-2 mr-4 rounded-md cursor-pointer transition-all duration-150 text-md text-pink font-bold`}
           onClick={handleSignOut}
         >
           <FontAwesomeIcon icon={faSignOutAlt} className="mr-1 mt-2" />
