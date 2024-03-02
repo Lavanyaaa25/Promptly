@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faListAlt, faPlus,faBookmark } from '@fortawesome/free-solid-svg-icons';
-import PromptCard from '../Components/Card';
+import PromptCard from '../Components/Card2';
 import Photo from '../Assets/user-account.png';
 // import Header from '../Components/Header';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

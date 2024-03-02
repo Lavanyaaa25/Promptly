@@ -1,6 +1,6 @@
 import {React,useState,useEffect} from 'react';
 // import { useNavigate } from 'react-router-dom';
-import PromptCard from '../Components/Card';
+import PromptCard from '../Components/Card1';
 import Header from '../Components/Header';
 const Explore = () => {
 
