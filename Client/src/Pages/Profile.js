@@ -94,8 +94,8 @@ const UserProfile = () => {
                 <div className="text-sm text-gray-300 flex items-center">
                   <FontAwesomeIcon icon={faListAlt} className="mr-1 text-yellow-400" />
                   <span className="text-yellow-400 text-lg mr-2">{promptCount}</span>
-                  <FontAwesomeIcon icon={faHeart} className="mr-1 text-orange" />
-                  <span className="text-white text-lg">{likesCount}</span>
+                  {/* <FontAwesomeIcon icon={faHeart} className="mr-1 text-orange" />
+                  <span className="text-white text-lg">{likesCount}</span> */}
                 </div>
               </div>
             </div>

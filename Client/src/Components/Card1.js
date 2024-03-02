@@ -1,3 +1,4 @@
+// PromptCard.js
 import { useState } from 'react';
 import { FiCopy, FiCheckCircle } from 'react-icons/fi';
 import { IoBookmarkOutline, IoBookmark } from 'react-icons/io5';
@@ -42,8 +43,11 @@ const PromptCard = ({ promptText, userName }) => {
           <p className="text-white text-lg font-semibold">@{userName}</p>
         </div>
         <div className="flex items-start space-x-2">
-          <button onClick={copyToClipboard} className="text-white font-bold py-2 px-4 rounded-full">
-            {copied ? <FiCheckCircle /> : <FiCopy />}
+          <button
+            onClick={copyToClipboard}
+            className={`text-white font-bold py-2 px-4 rounded-full ${copied ? 'bg-green-500' : ''}`}
+          >
+            {copied ? <FiCheckCircle style={{ color: '#34D399' }}/> : <FiCopy />}
           </button>
           <button onClick={handleSaveClick} className="text-white font-bold py-2 px-4 rounded-full">
             {saved ? <IoBookmark color="white" /> : <IoBookmarkOutline color="white" />}

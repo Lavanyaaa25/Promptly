@@ -23,10 +23,10 @@ const EditablePromptCard = ({ promptText, userName, onEdit, onDelete }) => {
         </div>
         <div className="flex items-start space-x-2">
           <button onClick={onEdit} className="text-white font-bold py-2 px-4 rounded-full">
-            <FiEdit2 />
+            <FiEdit2 style={{color:'#6FA5EC'}}/>
           </button>
           <button onClick={onDelete} className="text-white font-bold py-2 px-4 rounded-full">
-            <FiTrash />
+            <FiTrash style={{color:'#FF8F8F'}} />
           </button>
         </div>
       </div>
@@ -35,8 +35,8 @@ const EditablePromptCard = ({ promptText, userName, onEdit, onDelete }) => {
       </div>
       <div className="flex justify-center flex-wrap gap-1">
         {tags.map((tag, index) => (
-          <div key={index} className="rounded-full bg-gray-200 px-2 py-1">
-            <p className="text-sm text-gray-700 bg-slate-600 rounded px-2 py-1">{tag}</p>
+          <div key={index} className="bg-transparent">
+            <p className="text-xs text-green font-bold rounded px-2 py-1">{tag}</p>
           </div>
         ))}
       </div>
