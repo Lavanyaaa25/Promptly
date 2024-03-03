@@ -37,6 +37,8 @@ const PromptCard = ({ promptText, userName }) => {
         borderRadius: '10px',
         border: '1px solid rgba(255, 255, 255, 0.18)',
         overflowY: 'auto',
+        scrollbarWidth: 'thin',  // For Firefox
+        scrollbarColor: 'rgba(201, 174, 243, 1) transparent', 
       }}
     >
       <div className="flex items-start justify-between mb-4">
