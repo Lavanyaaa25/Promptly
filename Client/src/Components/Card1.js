@@ -36,6 +36,7 @@ const PromptCard = ({ promptText, userName }) => {
         WebkitBackdropFilter: 'blur(0px)',
         borderRadius: '10px',
         border: '1px solid rgba(255, 255, 255, 0.18)',
+        overflowY: 'auto',
       }}
     >
       <div className="flex items-start justify-between mb-4">

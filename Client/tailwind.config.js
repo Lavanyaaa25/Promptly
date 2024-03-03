@@ -12,7 +12,8 @@ module.exports = {
         'pink':'rgba(243, 219, 233, 1)',
         'red':'rgba(250, 225, 221, 1)',
         'green':'rgba(182, 204, 192, 1)',
-        'light-yel':'rgba(240, 206, 134, 1)'
+        'light-yel':'rgba(240, 206, 134, 1)',
+        'blue':'rgba(130, 176, 255, 1)'
         
       },
       fontFamily:{
