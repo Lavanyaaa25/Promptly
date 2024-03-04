@@ -4,6 +4,7 @@ import LandingPage from "./Pages/Landing";
 import Profile from "./Pages/Profile"
 import Create from "./Pages/Create";
 import Explore from "./Pages/Explore";
+import Edit from "./Pages/Edit";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/create" element={<Create/>}/>
+      <Route path="/edit" element={<Edit/>}/>
       <Route path="/users/:userName" element={<Profile/>}/>
       <Route path="/explore" element={<Explore/>}/>
     </Routes>

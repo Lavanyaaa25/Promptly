@@ -151,6 +151,7 @@ app.get('/getUser', authenticateToken, async (req,res) => {
     }
 })
 
+
 // ###################################### DELETE PROMPT ######################################
 
 app.get('/delete/:id', authenticateToken, async (req,res) => {
@@ -180,6 +181,22 @@ app.get('/delete/:id', authenticateToken, async (req,res) => {
             console.log(error); // Failure
         });
 
+    }
+    catch(err){
+        console.log(err);
+        res.json({status: 'error', message: 'Internal Error'});
+    }
+})
+
+// ###################################### EDIT PROMPT ######################################
+
+app.post('/edit', authenticateToken, async (req,res) => {
+    try{
+        const id = req.body.id;
+        const newPrompt = req.body.prompt;
+        const tags = req.body.tags;
+        await Prompt.findOneAndUpdate({id: id}, {prompt: newPrompt, tags: tags});
+        res.json({status: 'ok',message: 'Prompt Updated Successfully'});
     }
     catch(err){
         console.log(err);

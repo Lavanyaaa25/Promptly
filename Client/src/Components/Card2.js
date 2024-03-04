@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiEdit2, FiTrash } from 'react-icons/fi';
-import { IoBookmarkOutline } from 'react-icons/io5';
+// import { IoBookmarkOutline } from 'react-icons/io5';
 
 const EditablePromptCard = ({ id, promptText, userName}) => {
   const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
@@ -26,8 +26,6 @@ const EditablePromptCard = ({ id, promptText, userName}) => {
         navigate('/')
       }
   }
-
-
   return (
     <div
       className="border rounded-lg p-4 w-96 h-72 mx-auto mt-4 relative overflow-hidden flex flex-col justify-between"
@@ -48,9 +46,9 @@ const EditablePromptCard = ({ id, promptText, userName}) => {
           <p className="text-white text-lg font-semibold">@{userName}</p>
         </div>
         <div className="flex items-start space-x-2">
-          <button className="text-white font-bold py-2 px-4 rounded-full">
+          <Link to={`/edit?id=${id}&promptText=${encodeURIComponent(promptText)}`}><button className="text-white font-bold py-2 px-4 rounded-full">
             <FiEdit2 style={{color:'#6FA5EC'}}/>
-          </button>
+          </button></Link>
           <button onClick={handleDelete} className="text-white font-bold py-2 px-4 rounded-full">
             <FiTrash style={{color:'#FF8F8F'}} />
           </button>

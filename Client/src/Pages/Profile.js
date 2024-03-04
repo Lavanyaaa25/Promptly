@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faListAlt, faPlus,faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faListAlt, faPlus,faBookmark } from '@fortawesome/free-solid-svg-icons';
 import PromptCard from '../Components/Card2';
 import Photo from '../Assets/user-account.png';
 // import Header from '../Components/Header';
@@ -14,8 +14,8 @@ const UserProfile = () => {
   const [username, setUsername] = useState('');
   const [promptCount, setPromptCount] = useState(0);
   const [prompts, setPrompts] = useState([]);
-  const [selectedOption, setSelectedOption] = useState('My Prompts');
-  const likesCount = 25; // Replace with actual likes count
+  // const [selectedOption, setSelectedOption] = useState('My Prompts');
+  // const likesCount = 25; // Replace with actual likes count
   const { userName } = useParams();
   const navigate = useNavigate();
 
@@ -111,13 +111,12 @@ const UserProfile = () => {
               </button>
               <button
                 className={`button-prompt py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-green ml-4`}
-                onClick={() => setSelectedOption('My Prompts')}
               >
                 My Prompts
               </button>
               <button
                 className={`button-saved py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-green ml-4`}
-                onClick={() => setSelectedOption('Saved')}
+                // onClick={() => setSelectedOption('Saved')}
               >
                 <FontAwesomeIcon icon={faBookmark} className="mr-2" />
                 Saved
