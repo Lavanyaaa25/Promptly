@@ -4,12 +4,14 @@ import Header from '../Components/Header';
 const Edit = () => {
   const [prompt, setPrompt]=useState('');
   const [promptId, setPromptId]=useState('');
+  const [userName,setUserName] = useState('');
   const [tags, setTags]=useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const urlSearchString = window.location.search;
     const params = new URLSearchParams(urlSearchString);
+    setUserName(params.get('username'));
     setPromptId(params.get('id'));
     setPrompt(params.get('promptText'));
 
@@ -45,6 +47,7 @@ const Edit = () => {
       alert(res.message);
     else
       alert(res.message);
+    navigate(`/users/${userName}`)
     }
     catch(err){
       alert("Unauthorized Access");

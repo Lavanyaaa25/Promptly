@@ -46,7 +46,7 @@ const EditablePromptCard = ({ id, promptText, userName}) => {
           <p className="text-white text-lg font-semibold">@{userName}</p>
         </div>
         <div className="flex items-start space-x-2">
-          <Link to={`/edit?id=${id}&promptText=${encodeURIComponent(promptText)}`}><button className="text-white font-bold py-2 px-4 rounded-full">
+          <Link to={`/edit?id=${id}&promptText=${encodeURIComponent(promptText)}&username=${encodeURIComponent(userName)}`}><button className="text-white font-bold py-2 px-4 rounded-full">
             <FiEdit2 style={{color:'#6FA5EC'}}/>
           </button></Link>
           <button onClick={handleDelete} className="text-white font-bold py-2 px-4 rounded-full">
