@@ -112,8 +112,10 @@ app.post('/users/profile',authenticateToken, async (req, res) => {
         const prompts=[];
         for(var i=0;i<user.posts.length;i++){
             const prompt = await Prompt.findOne({id: user.posts[i]});
+            if(prompt != null)
             prompts.push(prompt);
         }
+        console.log(prompts);
         if(user)
             res.json({status: 'ok', user: user, prompts: prompts});
         else
@@ -142,6 +144,42 @@ app.get('/getUser', authenticateToken, async (req,res) => {
         const token = req.headers['access-token'];
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         res.json({status: 'ok', username: decoded.username});
+    }
+    catch(err){
+        console.log(err);
+        res.json({status: 'error', message: 'Internal Error'});
+    }
+})
+
+// ###################################### DELETE PROMPT ######################################
+
+app.get('/delete/:id', authenticateToken, async (req,res) => {
+    try{
+        const id = req.params.id;
+        const token = req.headers['access-token'];
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const user = await User.findOne({username: decoded.username});
+        var ind = -1;
+        console.log(user);
+        console.log(req.params.id);
+        for(var i=0;i<user.posts.length;i++){
+            if(user.posts[i] == id){
+                ind = i;
+                break;
+            }
+        }
+        if(ind==-1){
+            return res.json({status: 'error', message:'post not found'});
+        }else{
+            user.posts.splice(ind,1);
+        }
+        Prompt.deleteOne({ id: id }).then(function(){
+            return res.json({status: 'ok', message:'Data deleted'})
+            console.log("Data deleted"); // Success
+        }).catch(function(error){
+            console.log(error); // Failure
+        });
+
     }
     catch(err){
         console.log(err);

@@ -1,9 +1,32 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiEdit2, FiTrash } from 'react-icons/fi';
 import { IoBookmarkOutline } from 'react-icons/io5';
 
-const EditablePromptCard = ({ promptText, userName, onEdit, onDelete }) => {
+const EditablePromptCard = ({ id, promptText, userName}) => {
   const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
+  const navigate = useNavigate();
+  const handleDelete = async () => {
+      try{
+          const token = localStorage.getItem('token');
+          // console.log(key);
+          const response = await fetch(`http://localhost:3030/delete/${id}`, {
+            method: 'GET',
+            headers: {
+              'access-token': token,
+              'Content-Type': 'application/json',
+            }
+          });
+          const data = await response.json();
+          alert(data.message);  
+          window.location.reload();
+      }
+      catch(err){
+        alert('Unauthorized access')
+        navigate('/')
+      }
+  }
+
 
   return (
     <div
@@ -25,10 +48,10 @@ const EditablePromptCard = ({ promptText, userName, onEdit, onDelete }) => {
           <p className="text-white text-lg font-semibold">@{userName}</p>
         </div>
         <div className="flex items-start space-x-2">
-          <button onClick={onEdit} className="text-white font-bold py-2 px-4 rounded-full">
+          <button className="text-white font-bold py-2 px-4 rounded-full">
             <FiEdit2 style={{color:'#6FA5EC'}}/>
           </button>
-          <button onClick={onDelete} className="text-white font-bold py-2 px-4 rounded-full">
+          <button onClick={handleDelete} className="text-white font-bold py-2 px-4 rounded-full">
             <FiTrash style={{color:'#FF8F8F'}} />
           </button>
         </div>

@@ -35,8 +35,9 @@ const UserProfile = () => {
           if(data.status === 'ok'){
             setIsRegistered(true);
             setUsername(data.user.username);
-            setPromptCount(data.user.posts.length);
+            setPromptCount(data.prompts.length);
             setPrompts(data.prompts);
+            // console.log(prompts);
           }else{
             console.log("Hello");
             setIsRegistered(false);
@@ -125,8 +126,9 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="flex flex-row flex-wrap gap-4">
-          {prompts.map((post) => (
-            <PromptCard key={post.id} promptText={post.prompt} userName={post.username} />
+          {
+            prompts.map((post) => (
+            <PromptCard key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
           ))}
         </div>
       </div>
