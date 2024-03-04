@@ -175,7 +175,7 @@ app.get('/delete/:id', authenticateToken, async (req,res) => {
             user.posts.splice(ind,1);
         }
         Prompt.deleteOne({ id: id }).then(function(){
-            return res.json({status: 'ok', message:'Data deleted'})
+            return res.json({status: 'ok', message:'Prompt Deleted Successfully'})
             console.log("Data deleted"); // Success
         }).catch(function(error){
             console.log(error); // Failure
