@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListAlt, faPlus,faBookmark } from '@fortawesome/free-solid-svg-icons';
 import PromptCard from '../Components/Card2';
 import PromptCard2 from '../Components/Card1';
+import PromptCard3 from '../Components/Card3';
 import Photo from '../Assets/user-account.png';
 import { faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
@@ -132,7 +133,7 @@ const UserProfile = () => {
                 prompts.map((post) => (
                 <PromptCard type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
                 )):saved.map((post) => (
-                <PromptCard type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
+                <PromptCard3 type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
                 ))
               }
             </div>
