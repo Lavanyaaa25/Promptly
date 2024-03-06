@@ -132,15 +132,9 @@ const UserProfile = () => {
             <div className="flex flex-row flex-wrap gap-4 items-center justify-center">
               {
                 (shift)?
-                (prompts.length === 0)?
-                <h1 className="ml-4 mt-8 font-semibold text-5xl">NO PROMPTS POSTED</h1>
-                :
                 prompts.map((post) => (
                 <PromptCard tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
                 )):
-                (saved.length === 0)?
-                  <h1 className="ml-4 mt-8 font-semibold text-5xl">NO PROMPTS SAVED</h1>
-                :
                 saved.map((post) => (
                 <PromptCard3 tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
                 ))
@@ -198,9 +192,6 @@ const UserProfile = () => {
         </div>
         <div className="flex flex-row flex-wrap gap-4">
           {
-            (prompts.length === 0)?
-            <h1 className="ml-4 mt-8 font-semibold text-6xl">NO PROMPTS POSTED</h1>
-            :
             prompts.map((post) => (
             <PromptCard2 tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
             ))

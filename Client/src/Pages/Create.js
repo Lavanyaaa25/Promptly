@@ -64,7 +64,7 @@ const Create = () => {
         <label className="text-xl font-semibold text-pink">Enter Your Prompt:</label><br/>
         <textarea className="border border-gray-600 px-2 py-1 text-[15px] h-[180px] w-[584px] rounded-lg focus bg-transparent resize-none mb-3 mt-2" placeholder="e.g:Time-travel mishap" type="text" value={prompt} onChange={(e) => setPrompt(e.target.value)} required></textarea><br/>
         <label className="text-xl font-semibold text-pink">Enter Tags:</label><br/>
-        <input type='text' className="border border-gray-600 text-[15px] h-10 w-[584px] rounded-md focus bg-transparent mt-2 px-2" placeholder="e.g. #coding, #development" value={tags} onChange={(e) => setTags(e.target.value)}/><br/>
+        <input type='text' className="border border-gray-600 text-[15px] h-10 w-[584px] rounded-md focus bg-transparent mt-2 px-2" placeholder="e.g. #coding #development" value={tags} onChange={(e) => setTags(e.target.value)}/><br/>
         
         <input
   className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light  cursor-pointer border-none"
