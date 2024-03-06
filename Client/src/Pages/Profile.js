@@ -14,6 +14,8 @@ const UserProfile = () => {
   const [username, setUsername] = useState('');
   const [promptCount, setPromptCount] = useState(0);
   const [prompts, setPrompts] = useState([]);
+  const [saved, setSaved] = useState([]);
+  const [shift, setShift] = useState(true);
   // const [selectedOption, setSelectedOption] = useState('My Prompts');
   // const likesCount = 25; // Replace with actual likes count
   const { userName } = useParams();
@@ -37,6 +39,7 @@ const UserProfile = () => {
             setUsername(data.user.username);
             setPromptCount(data.prompts.length);
             setPrompts(data.prompts);
+            setSaved(data.saved);
             // console.log(prompts);
           }else{
             console.log("Hello");
@@ -111,12 +114,13 @@ const UserProfile = () => {
               </button>
               <button
                 className={`button-prompt py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-green ml-4`}
+                onClick={() => setShift(true)}
               >
                 My Prompts
               </button>
               <button
                 className={`button-saved py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-green ml-4`}
-                // onClick={() => setSelectedOption('Saved')}
+                onClick={() => setShift(false)}
               >
                 <FontAwesomeIcon icon={faBookmark} className="mr-2" />
                 Saved
@@ -126,9 +130,13 @@ const UserProfile = () => {
         </div>
         <div className="flex flex-row flex-wrap gap-4">
           {
+            (shift)?
             prompts.map((post) => (
-            <PromptCard key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
-          ))}
+            <PromptCard type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
+            )):saved.map((post) => (
+            <PromptCard type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
+            ))
+          }
         </div>
       </div>
     );

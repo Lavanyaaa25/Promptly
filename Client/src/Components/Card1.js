@@ -2,12 +2,15 @@
 import { useState } from 'react';
 import { FiCopy, FiCheckCircle } from 'react-icons/fi';
 import { IoBookmarkOutline, IoBookmark } from 'react-icons/io5';
+import { Link, useNavigate } from 'react-router-dom';
 
-const PromptCard = ({ promptText, userName }) => {
+const PromptCard = ({ id, promptText, userName }) => {
   const [copied, setCopied] = useState(false); // State to track if text is copied
   const [saved, setSaved] = useState(false); // State to track if prompt is saved
 
   const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
+
+  const navigate = useNavigate();
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(promptText)
@@ -22,8 +25,27 @@ const PromptCard = ({ promptText, userName }) => {
       });
   };
 
-  const handleSaveClick = () => {
-    setSaved(!saved); // Toggle the saved state
+  const handleSaveClick = async () => {
+    setSaved(true); 
+    setTimeout(() => {
+      setSaved(false);
+    }, 1000);
+    try{
+          const token = localStorage.getItem('token');
+          // console.log(key);
+          const response = await fetch(`http://localhost:3030/save/${id}`, {
+            method: 'GET',
+            headers: {
+              'access-token': token,
+              'Content-Type': 'application/json',
+            }
+          });
+          const data = await response.json();
+          alert(data.message); 
+    }catch(err){
+      alert('Unauthorized access')
+      navigate('/')
+    } 
   };
 
   return (
@@ -43,7 +65,7 @@ const PromptCard = ({ promptText, userName }) => {
     >
       <div className="flex items-start justify-between mb-4">
         <div>
-          <p className="text-white text-lg font-semibold">@{userName}</p>
+          <Link to={`/users/${userName}`}><p className="text-white text-lg font-semibold cursor-pointer">@{userName}</p></Link>
         </div>
         <div className="flex items-start space-x-2">
           <button

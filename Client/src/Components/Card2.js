@@ -3,14 +3,26 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiEdit2, FiTrash } from 'react-icons/fi';
 // import { IoBookmarkOutline } from 'react-icons/io5';
 
-const EditablePromptCard = ({ id, promptText, userName}) => {
+const EditablePromptCard = ({ type, id, promptText, userName}) => {
   const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
   const navigate = useNavigate();
   const handleDelete = async () => {
       try{
           const token = localStorage.getItem('token');
           // console.log(key);
-          const response = await fetch(`http://localhost:3030/delete/${id}`, {
+          if(type){
+            const response = await fetch(`http://localhost:3030/delete/${id}`, {
+              method: 'GET',
+              headers: {
+                'access-token': token,
+                'Content-Type': 'application/json',
+              }
+            });
+            const data = await response.json();
+            alert(data.message);  
+            window.location.reload();
+        }else{
+          const response = await fetch(`http://localhost:3030/delete_saved/${id}`, {
             method: 'GET',
             headers: {
               'access-token': token,
@@ -20,6 +32,7 @@ const EditablePromptCard = ({ id, promptText, userName}) => {
           const data = await response.json();
           alert(data.message);  
           window.location.reload();
+        }
       }
       catch(err){
         alert('Unauthorized access')
@@ -43,7 +56,7 @@ const EditablePromptCard = ({ id, promptText, userName}) => {
     >
       <div className="flex items-start justify-between mb-4">
         <div>
-          <p className="text-white text-lg font-semibold">@{userName}</p>
+        <Link to={`/users/${userName}`}><p className="text-white text-lg font-semibold cursor-pointer">@{userName}</p></Link>
         </div>
         <div className="flex items-start space-x-2">
           <Link to={`/edit?id=${id}&promptText=${encodeURIComponent(promptText)}&username=${encodeURIComponent(userName)}`}><button className="text-white font-bold py-2 px-4 rounded-full">

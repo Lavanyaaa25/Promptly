@@ -110,14 +110,20 @@ app.post('/users/profile',authenticateToken, async (req, res) => {
         const username = req.body.userName;
         const user = await User.findOne({username: username})
         const prompts=[];
+        const saved=[];
         for(var i=0;i<user.posts.length;i++){
             const prompt = await Prompt.findOne({id: user.posts[i]});
             if(prompt != null)
             prompts.push(prompt);
         }
-        console.log(prompts);
+        for(var i=0;i<user.saved.length;i++){
+            const prompt = await Prompt.findOne({id: user.saved[i]});
+            if(prompt != null)
+            saved.push(prompt);
+        }
+        // console.log(prompts);
         if(user)
-            res.json({status: 'ok', user: user, prompts: prompts});
+            res.json({status: 'ok', user: user, prompts: prompts, saved: saved});
         else
             res.json({status: 'error'});
     }catch(err){
@@ -161,8 +167,6 @@ app.get('/delete/:id', authenticateToken, async (req,res) => {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         const user = await User.findOne({username: decoded.username});
         var ind = -1;
-        console.log(user);
-        console.log(req.params.id);
         for(var i=0;i<user.posts.length;i++){
             if(user.posts[i] == id){
                 ind = i;
@@ -197,6 +201,52 @@ app.post('/edit', authenticateToken, async (req,res) => {
         const tags = req.body.tags;
         await Prompt.findOneAndUpdate({id: id}, {prompt: newPrompt, tags: tags});
         res.json({status: 'ok',message: 'Prompt Updated Successfully'});
+    }
+    catch(err){
+        console.log(err);
+        res.json({status: 'error', message: 'Internal Error'});
+    }
+})
+
+// ###################################### SAVE PROMPT ######################################
+
+app.get('/save/:id', authenticateToken, async (req,res) => {
+    try{
+        const id = req.params.id;
+        const token = req.headers['access-token'];
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const user = await User.findOne({username: decoded.username});
+        if(!user){
+            return res.json({status: 'error', message: 'User not Registered'});
+        }
+        if(user.saved.indexOf(id) === -1)
+            user.saved.push(id);
+        // console.log(user);
+        await user.save();
+        res.json({status: 'ok', message: 'Prompt Saved Successfully'});
+    }
+    catch(err){
+        console.log(err);
+        res.json({status: 'error', message: 'Internal Error'});
+    }
+})
+
+// ###################################### UNSAVE PROMPT ######################################
+
+app.get('/delete_saved/:id', authenticateToken, async (req,res) => {
+    try{
+        const id = req.params.id;
+        const token = req.headers['access-token'];
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const user = await User.findOne({username: decoded.username});
+        if(!user){
+            return res.json({status: 'error', message: 'User not Registered'});
+        }
+        if(user.saved.indexOf(id)!==-1)
+        user.saved.splice(user.saved.indexOf(id),1);
+        // console.log(user);
+        await user.save();
+        res.json({status: 'ok', message: 'Prompt Unsaved Successfully'});
     }
     catch(err){
         console.log(err);
