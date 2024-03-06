@@ -53,9 +53,11 @@ const Explore = () => {
      
         {/* Cards Section */}
 <div className="flex flex-wrap justify-center gap-16 mt-4"> {/* Increased from gap-8 to gap-16 */}
-      {prompts.map((post) => <div className="flex flex-col justify-center gap-16 mt-4 sm:flex-row"> {/* Increased from gap-12 to gap-16 */}
-          <PromptCard id = {post.id} promptText={post.prompt} userName={post.username}/>
-        </div>)}
+      {
+        prompts.map((post) => <div className="flex flex-col justify-center gap-16 mt-4 sm:flex-row"> {/* Increased from gap-12 to gap-16 */}
+          <PromptCard id = {post.id} tags={post.tags} promptText={post.prompt} userName={post.username}/>
+        </div>)
+      }
       </div>
 
   </div>

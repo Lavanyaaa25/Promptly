@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiEdit2, FiTrash } from 'react-icons/fi';
 // import { IoBookmarkOutline } from 'react-icons/io5';
 
-const EditablePromptCard = ({ type, id, promptText, userName}) => {
-  const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
+const EditablePromptCard = ({ type, id, promptText, userName, tags}) => {
+  // const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
   const navigate = useNavigate();
   const handleDelete = async () => {
       try{

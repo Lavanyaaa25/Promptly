@@ -17,7 +17,7 @@ const Create = () => {
       const data = {
         id: new Date().getTime(),
         prompt: prompt,
-        tags: tags
+        tags: tags.split(" ")
       }
       setPrompt('');
       setTags('');

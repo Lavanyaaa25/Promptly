@@ -130,7 +130,7 @@ app.post('/users/profile',authenticateToken, async (req, res) => {
             }
             // console.log(prompts);
             if(user)
-                res.json({status: 'ok', user: user, prompts: prompts, saved: saved, auth: true});
+                res.json({status: 'ok', user: user, prompts: prompts, saved: saved, auth: true, auth_username: auth_user.username});
             else
                 res.json({status: 'error'});
         }else{
@@ -141,7 +141,7 @@ app.post('/users/profile',authenticateToken, async (req, res) => {
                 prompts.push(prompt);
             }
             if(user)
-                res.json({status: 'ok', user: user, prompts: prompts, auth: false});
+                res.json({status: 'ok', user: user, prompts: prompts, auth: false, auth_username: auth_user.username});
             else
                 res.json({status: 'error'});
         }

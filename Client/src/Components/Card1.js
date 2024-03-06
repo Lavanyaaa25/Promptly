@@ -4,11 +4,11 @@ import { FiCopy, FiCheckCircle } from 'react-icons/fi';
 import { IoBookmarkOutline, IoBookmark } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 
-const PromptCard = ({ id, promptText, userName }) => {
+const PromptCard = ({ id, promptText, userName, tags }) => {
   const [copied, setCopied] = useState(false); // State to track if text is copied
   const [saved, setSaved] = useState(false); // State to track if prompt is saved
 
-  const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
+  // const tags = ['#tag1', '#tag2', '#tag3', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4', '#tag4']; // Replace with your tag list
 
   const navigate = useNavigate();
 

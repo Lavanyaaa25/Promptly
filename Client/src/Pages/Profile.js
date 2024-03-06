@@ -12,6 +12,7 @@ import { faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 const UserProfile = () => {
   const [isRegistered, setIsRegistered] = useState(true);
   const [username, setUsername] = useState('');
+  const [auth_username, setAuthUsername] = useState('');
   const [promptCount, setPromptCount] = useState(0);
   const [prompts, setPrompts] = useState([]);
   const [saved, setSaved] = useState([]);
@@ -40,6 +41,7 @@ const UserProfile = () => {
             setPrompts(data.prompts);
             setSaved(data.saved);
             setAuth(data.auth);
+            setAuthUsername(data.auth_username);
             // console.log(prompts);
           }else{
             console.log("Hello");
@@ -127,13 +129,20 @@ const UserProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row flex-wrap gap-4">
+            <div className="flex flex-row flex-wrap gap-4 items-center justify-center">
               {
                 (shift)?
+                (prompts.length === 0)?
+                <h1 className="ml-4 mt-8 font-semibold text-5xl">NO PROMPTS POSTED</h1>
+                :
                 prompts.map((post) => (
-                <PromptCard type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
-                )):saved.map((post) => (
-                <PromptCard3 type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
+                <PromptCard tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
+                )):
+                (saved.length === 0)?
+                  <h1 className="ml-4 mt-8 font-semibold text-5xl">NO PROMPTS SAVED</h1>
+                :
+                saved.map((post) => (
+                <PromptCard3 tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
                 ))
               }
             </div>
@@ -149,13 +158,16 @@ const UserProfile = () => {
           Promptly
         </span>
       </div>
-        <button
-          className={`button-signout py-3 px-2 mr-4 rounded-md cursor-pointer transition-all duration-150 text-md text-pink font-bold`}
-          onClick={handleSignOut}
-        >
-          <FontAwesomeIcon icon={faSignOutAlt} className="mr-1 mt-2" />
-          Log Out
-        </button>
+        <div className="flex items-center ml-auto" onClick={() => navigate(`/users/${auth_username}`)}>
+        <div className="rounded-full h-8 w-8 overflow-hidden border-2 border-white mr-2 mt-1">
+          <img
+            className="h-full w-full object-cover hover:cursor-pointer"
+            src={Photo}
+            alt="Profile"
+          />
+        </div>
+        <span className='py-3 pl-[-0.25rem] mr-4 font-bold hover:cursor-pointer'>{auth_username}</span>
+      </div>
     </div>
 
         <div className="flex justify-center">
@@ -186,8 +198,11 @@ const UserProfile = () => {
         </div>
         <div className="flex flex-row flex-wrap gap-4">
           {
+            (prompts.length === 0)?
+            <h1 className="ml-4 mt-8 font-semibold text-6xl">NO PROMPTS POSTED</h1>
+            :
             prompts.map((post) => (
-            <PromptCard2 type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
+            <PromptCard2 tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
             ))
           }
         </div>
