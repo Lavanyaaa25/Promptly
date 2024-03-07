@@ -181,12 +181,12 @@ const UserProfile = () => {
             </div>
 
             <div className="flex justify-center">
-              <button
+              {/* <button
                 className={`button-prompt py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-green ml-4`}
                 onClick={() => setShift(true)}
               >
                 Contributions
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

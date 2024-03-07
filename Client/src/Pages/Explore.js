@@ -5,6 +5,7 @@ import Header from '../Components/Header';
 const Explore = () => {
 
   const [prompts, setPrompts] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     async function getFeed(){
@@ -25,6 +26,33 @@ const Explore = () => {
     }
     getFeed();
   }, [])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const details = {
+        tag: search
+      };
+      setSearch('');
+      const response = await fetch('http://localhost:3030/search',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body:JSON.stringify(details),
+        });
+        const data = await response.json();
+        if(data.status === 'ok'){
+          setPrompts(data.result);
+        }else{
+          alert(data.message);
+        }
+    }
+    catch(err){
+      console.log(err);
+      alert("ERROR!!!");
+    }
+  }
   
 
   return (
@@ -40,11 +68,16 @@ const Explore = () => {
 
       <div className="flex justify-center mt-4">
         <div className="relative w-3/4 md:w-8/12">
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder=" Search..."
-            className="pl-12 pr-6 py-3 bg-gray-800 text-black placeholder-gray-800 w-full text-2xl border-2 rounded-[40px] border-white focus:outline-none" 
+            placeholder=" Search with tags"
+            className="pl-12 pr-6 py-3 bg-gray-800 text-black placeholder-gray-800 w-full text-2xl border-2 rounded-[40px] border-white focus:outline-none"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)} 
           />
+          <input type='submit' hidden></input>
+        </form>
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
             <p style={{ fontSize: '1.5rem' }}>&#128269;</p>
           </div>

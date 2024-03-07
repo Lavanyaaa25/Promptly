@@ -273,4 +273,25 @@ app.get('/delete_saved/:id', authenticateToken, async (req,res) => {
     }
 })
 
+// ###################################### SEARCH PROMPT ######################################
+
+app.post('/search', async (req,res)=>{
+    try{
+        const tag = req.body.tag;
+        const prompts = await Prompt.find();
+        if(tag.length === 0){
+            return res.json({status: 'ok', result: prompts});
+        }
+        const result = [];
+        for(var i=0; i<prompts.length; i++){
+            if(prompts[i].tags.indexOf(tag)!==-1)
+                result.push(prompts[i]);
+        }
+        return res.json({status: 'ok', result: result});
+    }catch(err){
+        console.log(err);
+        res.json({status: 'error', message: 'Internal Error'});
+    }
+})
+
 app.listen(3030, () => console.log("Server running on port 3030"));
