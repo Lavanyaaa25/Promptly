@@ -22,7 +22,7 @@ const Card3 = ({ type, id, promptText, userName, tags}) => {
             alert(data.message);  
             window.location.reload();
         }else{
-          const response = await fetch(`http://localhost:3030/delete_saved/${id}`, {
+          const response = await fetch(`http://localhost:3030/save/unsave/${id}`, {
             method: 'GET',
             headers: {
               'access-token': token,

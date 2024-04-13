@@ -12,7 +12,7 @@ const LandingPage = () => {
     async function isLoggedIn(){
       try{
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3030/getUser',{
+        const response = await fetch('http://localhost:3030/users/getUser',{
           method: 'GET',
           headers: {
             'access-token': token,

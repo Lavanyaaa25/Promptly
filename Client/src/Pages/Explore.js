@@ -10,7 +10,7 @@ const Explore = () => {
   useEffect(() => {
     async function getFeed(){
       const token = localStorage.getItem('token');
-      const response = await fetch("http://localhost:3030/prompts", {
+      const response = await fetch("http://localhost:3030/feed/prompts", {
         method: 'GET',
         headers: {
           'access-token': token,
@@ -34,7 +34,7 @@ const Explore = () => {
         tag: search
       };
       setSearch('');
-      const response = await fetch('http://localhost:3030/search',{
+      const response = await fetch('http://localhost:3030/feed/search',{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
