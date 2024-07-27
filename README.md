@@ -30,3 +30,54 @@
 <h2>Profile</h2>
 <img width="960" alt="Screenshot 2024-03-22 221555" src="https://github.com/VaibhavSingh87/Promptly/assets/114211427/747fbe15-4a6c-4d20-bed9-2ef6ad5cdb9a">
 
+## 🎯 Getting Started
+
+To get started with Promptly, follow these steps:
+
+1. **Clone the Repository**:
+    ```bash
+    git clone https://github.com/VaibhavSingh87/Promptly.git
+    ```
+
+2. **Install Dependencies for the Frontend**:
+    ```bash
+    cd client
+    npm install
+    ```
+
+3. **Install Dependencies for the Backend**:
+    ```bash
+    cd ../server
+    npm install
+    ```
+
+4. **Run the Backend Server**:
+    ```bash
+    cd ../server
+    nodemon ./server.js
+    ```
+
+6. **Run the Frontend Application**:
+    ```bash
+    cd ../client
+    npm start
+    ```
+
+7. **Open Your Browser**:
+    Navigate to `http://localhost:3000` to start using Prompty!
+
+## 🛠️ Technologies Used
+
+- **Frontend**: React.js, TailwindCSS
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes.
+4. Submit a pull request.
+
