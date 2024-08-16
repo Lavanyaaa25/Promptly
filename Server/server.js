@@ -12,7 +12,7 @@ app.use(cors());
 
 // ################################ MONGO DB CONNECTION ################################
 
-mongoose.connect('mongodb://127.0.0.1:27017/Promptly').then(() => console.log('Connected to MongoDB'))
+mongoose.connect('mongodb://mongo:27017/Promptly').then(() => console.log('Connected to MongoDB'))
 .catch((err) => console.error('Connection error:', err));
 
 const userRoute = require('./Routes/User');
