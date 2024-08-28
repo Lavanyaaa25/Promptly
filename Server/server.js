@@ -12,7 +12,7 @@ app.use(cors());
 
 // ################################ MONGO DB CONNECTION ################################
 
-mongoose.connect('mongodb://mongo:27017/Promptly').then(() => console.log('Connected to MongoDB'))
+mongoose.connect('mongodb://127.0.0.1:27017/Promptly').then(() => console.log('Connected to MongoDB'))
 .catch((err) => console.error('Connection error:', err));
 
 const userRoute = require('./Routes/User');
@@ -22,6 +22,7 @@ const feedRoute = require('./Routes/Feed');
 const deleteRoute = require('./Routes/DeletePrompt');
 const saveRoute = require('./Routes/SavePrompt');
 const editRoute = require('./Routes/Edit');
+const genRoute = require('./Routes/Generate');
 
 app.use('/user',userRoute);
 app.use('/publish',publishRoute);
@@ -30,5 +31,6 @@ app.use('/feed',feedRoute);
 app.use('/delete',deleteRoute);
 app.use('/save',saveRoute);
 app.use('/edit',editRoute);
+app.use('/generate',genRoute);
 
 app.listen(3030, () => console.log("Server running on port 3030"));
