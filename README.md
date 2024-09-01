@@ -57,7 +57,7 @@ We welcome contributions from the community! Here's how you can help:
 4. Submit a pull request.
 
 <h1>Features</h1>
-<ul>
+<ol>
   <li>
     <strong>Create Prompts</strong>
     <ul>
@@ -67,7 +67,7 @@ We welcome contributions from the community! Here's how you can help:
       <li><strong>Edit Prompt:</strong> If you need to make changes to a prompt after publishing it, you can easily edit it. This feature allows you to update or refine your prompt to keep it relevant and effective.</li>
     </ul>
   </li>
-  
+  <br>
   <li>
     <strong>Discover Section</strong>
     <ul>
@@ -76,7 +76,7 @@ We welcome contributions from the community! Here's how you can help:
       <li><strong>Save Prompts to Your Collection:</strong> Save interesting or useful prompts to your personal collection for easy access later. This feature ensures you have your favorite prompts readily available when needed.</li>
     </ul>
   </li>
-  
+  <br>
   <li>
     <strong>Profile</strong>
     <ul>
@@ -85,7 +85,7 @@ We welcome contributions from the community! Here's how you can help:
       <li><strong>Remove Unwanted Prompts:</strong> If there are prompts you no longer wish to share or keep in your saved collection, this feature allows you to remove them. Keep your profile content organized and relevant.</li>
     </ul>
   </li>
-</ul>
+</ol>
 
 
 <h1>Preview</h1>
