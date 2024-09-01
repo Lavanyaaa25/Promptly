@@ -71,77 +71,90 @@ const UserProfile = () => {
     );
   else{
     if(auth){
-        return (
-            <div className="min-h-screen text-white relative flex flex-col gap-9">
-              {/* <Header/> */}
-              <div className="flex items-center justify-between">
-          <div className="ml-4  md:text-2xl font-bold text-sm text-purple flex items-center">
-            <span onClick={() => navigate('/explore')} className="hover:cursor-pointer">
-              Promptly
-            </span>
-          </div>
+      return (
+        <div className="min-h-screen text-white relative flex flex-col gap-9">
+          {/* <Header/> */}
+          <div className="flex items-center justify-between">
+            <div className="ml-4 md:text-2xl font-bold text-sm text-purple flex items-center">
+              <span onClick={() => navigate('/explore')} className="hover:cursor-pointer">
+                Promptly
+              </span>
+            </div>
             <button
-              className={`button-signout py-3 px-2 mr-4 rounded-md cursor-pointer transition-all duration-150 text-md text-pink font-bold`}
+              className={`button-signout py-2 px-3 md:py-3 md:px-4 mr-4 rounded-md cursor-pointer transition-all duration-150 text-sm md:text-md text-pink font-bold`}
               onClick={handleSignOut}
             >
               <FontAwesomeIcon icon={faSignOutAlt} className="mr-1 mt-2" />
               Log Out
             </button>
-        </div>
-
-            <div className="flex justify-center">
-              <div className="border border-white rounded-lg p-4 w-3/4">
-                <div className="flex items-center mb-6">
-                  <div className="rounded-full h-24 w-24 overflow-hidden border-2 border-white flex-shrink-0">
-                    <img className="h-full w-full object-cover" src={Photo} alt="Profile" />
-                  </div>
-
-                  <div className="ml-6 flex flex-col flex-grow">
-                    <div className="text-2xl font-semibold text-white mb-1">{username}</div>
-                    <div className="text-sm text-gray-300 flex items-center">
-                      <FontAwesomeIcon icon={faListAlt} className="mr-1 text-yellow-400" />
-                      <span className="text-yellow-400 text-lg mr-2">{promptCount}</span>
-                    </div>
-                  </div>
+          </div>
+      
+          <div className="flex justify-center">
+            <div className="border border-white rounded-lg p-4 w-full md:w-3/4">
+              <div className="flex items-center mb-6">
+                <div className="rounded-full h-20 w-20 md:h-24 md:w-24 overflow-hidden border-2 border-white flex-shrink-0">
+                  <img className="h-full w-full object-cover" src={Photo} alt="Profile" />
                 </div>
-
-                <div className="flex justify-center">
-                  <button
-                    className={`button-create py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-orange`}
-                    onClick={() => navigate('/create')}
-                  >
-                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
-                    Create
-                  </button>
-                  <button
-                    className={`button-prompt py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-green ml-4`}
-                    onClick={() => setShift(true)}
-                  >
-                    My Prompts
-                  </button>
-                  <button
-                    className={`button-saved py-3 px-4 rounded-md cursor-pointer transition-all duration-150 text-lg text-black font-semibold bg-green ml-4`}
-                    onClick={() => setShift(false)}
-                  >
-                    <FontAwesomeIcon icon={faBookmark} className="mr-2" />
-                    Saved
-                  </button>
+      
+                <div className="ml-4 md:ml-6 flex flex-col flex-grow">
+                  <div className="text-xl md:text-2xl font-semibold text-white mb-1">{username}</div>
+                  <div className="text-xs md:text-sm text-gray-300 flex items-center">
+                    <FontAwesomeIcon icon={faListAlt} className="mr-1 text-yellow-400" />
+                    <span className="text-yellow-400 text-md md:text-lg mr-2">{promptCount}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-row flex-wrap gap-4 items-center justify-center">
-              {
-                (shift)?
-                prompts.map((post) => (
-                <PromptCard tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
-                )):
-                saved.map((post) => (
-                <PromptCard3 tags={post.tags} type={shift} key={post.id} id={post.id} promptText={post.prompt} userName={post.username} />
-                ))
-              }
+      
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+                <button
+                  className={`button-create py-2 px-3 md:py-3 md:px-4 rounded-md cursor-pointer transition-all duration-150 text-sm md:text-lg text-black font-semibold bg-orange`}
+                  onClick={() => navigate('/create')}
+                >
+                  <FontAwesomeIcon icon={faPlus} className="mr-1 md:mr-2" />
+                  Create
+                </button>
+                <button
+                  className={`button-prompt py-2 px-3 md:py-3 md:px-4 rounded-md cursor-pointer transition-all duration-150 text-sm md:text-lg text-black font-semibold bg-green`}
+                  onClick={() => setShift(true)}
+                >
+                  My Prompts
+                </button>
+                <button
+                  className={`button-saved py-2 px-3 md:py-3 md:px-4 rounded-md cursor-pointer transition-all duration-150 text-sm md:text-lg text-black font-semibold bg-green`}
+                  onClick={() => setShift(false)}
+                >
+                  <FontAwesomeIcon icon={faBookmark} className="mr-1 md:mr-2" />
+                  Saved
+                </button>
+              </div>
             </div>
           </div>
-        );
+          <div className="flex flex-row flex-wrap gap-4 items-center justify-center">
+            {shift
+              ? prompts.map((post) => (
+                  <PromptCard
+                    tags={post.tags}
+                    type={shift}
+                    key={post.id}
+                    id={post.id}
+                    promptText={post.prompt}
+                    userName={post.username}
+                  />
+                ))
+              : saved.map((post) => (
+                  <PromptCard3
+                    tags={post.tags}
+                    type={shift}
+                    key={post.id}
+                    id={post.id}
+                    promptText={post.prompt}
+                    userName={post.username}
+                  />
+                ))}
+          </div>
+        </div>
+      );
+      
     }else{
       return (
         <div className="min-h-screen text-white relative flex flex-col gap-9">

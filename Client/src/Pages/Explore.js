@@ -60,9 +60,9 @@ const Explore = () => {
       {/* Promptly LOGO */}
       <Header/>
       <div className="flex flex-col items-center justify-center mt-4 text-xl md:text-6xl font-bold">
-        <h1 className="text-4xl md:text-6xl font-bold text-light-yel text-center">Discover Endless Ideas</h1>
+        <h1 className="text-3xl md:text-6xl font-bold text-light-yel text-center">Discover Endless Ideas</h1>
         <div className="mt-2">
-          <h1 className="text-2xl md:text-3xl font-semibold text-red text-center">Explore Prompts...</h1>
+          <h1 className="text-xl md:text-3xl font-semibold text-red text-center">Explore Prompts...</h1>
         </div>
       </div>
 
