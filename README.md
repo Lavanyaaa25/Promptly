@@ -56,6 +56,38 @@ We welcome contributions from the community! Here's how you can help:
 3. Make your changes.
 4. Submit a pull request.
 
+<h1>Features</h1>
+<ul>
+  <li>
+    <strong>Create Prompts</strong>
+    <ul>
+      <li><strong>Easily Create, Share, and Edit AI Prompts:</strong> Design, share, and edit your own AI prompts with ease. Whether you’re addressing a specific task or sparking creativity, you can craft prompts to guide the AI in generating the desired output.</li>
+      <li><strong>Describe the Task and Context:</strong> Use concise tags to describe the task, context, and any other relevant information. This ensures others quickly understand the purpose of your prompt and how to use it effectively.</li>
+      <li><strong>Get AI Suggestions:</strong> While crafting your prompt, receive AI-generated suggestions to refine and optimize it. This feature helps you improve your prompt, ensuring it delivers the intended results.</li>
+      <li><strong>Edit Prompt:</strong> If you need to make changes to a prompt after publishing it, you can easily edit it. This feature allows you to update or refine your prompt to keep it relevant and effective.</li>
+    </ul>
+  </li>
+  
+  <li>
+    <strong>Discover Section</strong>
+    <ul>
+      <li><strong>Explore a Wide Range of Prompts:</strong> The Discover section is a space to explore a variety of prompts created by the community. Access a rich library of prompts that cater to different needs and interests.</li>
+      <li><strong>Browse Categories and Use Search Filters:</strong> Easily find relevant prompts by browsing through categories or using search filters. Whether you’re interested in creativity, productivity, or specific industries, this feature helps you quickly locate what you need.</li>
+      <li><strong>Save Prompts to Your Collection:</strong> Save interesting or useful prompts to your personal collection for easy access later. This feature ensures you have your favorite prompts readily available when needed.</li>
+    </ul>
+  </li>
+  
+  <li>
+    <strong>Profile</strong>
+    <ul>
+      <li><strong>View Your Published Prompts:</strong> Your profile allows you to keep track of all the prompts you've published. Manage your contributions, monitor engagement, and make updates as necessary.</li>
+      <li><strong>Access Your Saved Prompts:</strong> Quickly revisit the prompts you’ve saved from the Discover section. This feature provides easy access to the prompts you find particularly valuable.</li>
+      <li><strong>Remove Unwanted Prompts:</strong> If there are prompts you no longer wish to share or keep in your saved collection, this feature allows you to remove them. Keep your profile content organized and relevant.</li>
+    </ul>
+  </li>
+</ul>
+
+
 <h1>Preview</h1>
 <h2>Register/Login</h2>
 <img width="960" alt="Screenshot 2024-03-22 221022" src="https://github.com/VaibhavSingh87/Promptly/assets/114211427/380d7152-3a4c-49bc-a898-3da84b6043b2">
@@ -65,27 +97,4 @@ We welcome contributions from the community! Here's how you can help:
 <img width="960" alt="Screenshot 2024-03-22 221154" src="https://github.com/VaibhavSingh87/Promptly/assets/114211427/abb1bfca-de6e-4ddf-8abb-6c5b42b6b903">
 <h2>Profile</h2>
 <img width="960" alt="Screenshot 2024-03-22 221555" src="https://github.com/VaibhavSingh87/Promptly/assets/114211427/747fbe15-4a6c-4d20-bed9-2ef6ad5cdb9a">
-
-<h1>Features</h1>
-<h2>Create Prompts</h2>
-<ul>
-  <li>Easily create and share your own AI prompts.</li>
-  <li>Describe the task, context, and any other relevant information to help others understand and use your prompt effectively.</li>
-</ul>
-<h2>Discover Section</h2>
-<ul>
-  <li>Explore a diverse range of prompts created by the community.</li>
-  <li>Browse through different categories or use search filters to find prompts relevant to your interests.</li>
-  <li>Save the prompts you find interesting or useful to your personal collection for easy access later.</li>
-</ul>
-
-<h2>Profile</h2>
-<ul>
-<li>View your published prompts to keep track of your contributions to the community.</li>
-<li>Access your saved prompts to quickly revisit the ones you found interesting or useful.</li>
-<li>Remove prompts that you no longer wish to share or have saved in your collection.</li>
-</ul>
-
-
-
 
