@@ -40,14 +40,14 @@ const Header = () => {
       </span>
     </div>
     <div className="flex items-center ml-auto" onClick={() => navigate(`/users/${username}`)}>
-      <div className="rounded-full h-8 w-8 overflow-hidden border-2 border-white mr-2 mt-1">
+      <div className="rounded-full h-6 w-6 md:h-8 md:w-8 overflow-hidden border-2 border-white mr-2 mt-1">
         <img
           className="h-full w-full object-cover hover:cursor-pointer"
           src={Photo}
           alt="Profile"
         />
       </div>
-      <span className='py-3 pl-[-0.25rem] mr-4 font-bold hover:cursor-pointer'>{username}</span>
+      <span className='py-3 pl-[-0.25rem] mr-4 md:text-2xl font-bold text-sm hover:cursor-pointer'>{username}</span>
     </div>
   </div>
   )

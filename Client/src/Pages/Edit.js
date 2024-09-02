@@ -87,7 +87,7 @@ const Edit = () => {
 <div className="w-full flex justify-center items-center">
   <div className="flex flex-col">
     <div className="text-left ml-10">
-      <h1 className="text-xl md:text-5xl font-bold mb-2 md:mb-5 text-green">
+      <h1 className="text-lg md:text-5xl font-bold mb-2 md:mb-5 text-green">
         Edit your AI Prompt
       </h1>
       <p className="text-sm md:text-[18px] mb-8 text-orange-red">
@@ -107,7 +107,7 @@ const Edit = () => {
   type="submit"
 />
 <button
-  className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light  cursor-pointer border-none ml-5"
+  className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-green cursor-pointer border-none ml-5"
   value="AI Suggestion"
   onClick={generate}>AI Suggestion</button>
        

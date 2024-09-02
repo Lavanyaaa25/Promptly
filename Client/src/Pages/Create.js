@@ -74,7 +74,7 @@ const Create = () => {
 <div className="w-full flex justify-center items-center">
   <div className="flex flex-col">
     <div className="text-left ml-10">
-      <h1 className="text-xl md:text-5xl font-bold mb-2 md:mb-5 text-green">
+      <h1 className="text-lg md:text-5xl font-bold mb-2 md:mb-5 text-green">
         Publish your AI Prompt
       </h1>
       <p className="text-sm md:text-[18px] mb-8 text-orange-red">
@@ -83,10 +83,10 @@ const Create = () => {
     </div>
     <div className="ml-10">
       <form onSubmit={handleSubmit}>
-        <label className="text-xl font-semibold text-pink">Enter Your Prompt:</label><br/>
-        <textarea className="border border-gray-600 px-2 py-1 text-[15px] h-[180px] w-[584px] rounded-lg focus bg-transparent resize-none mb-3 mt-2" placeholder="e.g:Time-travel mishap" type="text" value={prompt} onChange={(e) => setPrompt(e.target.value)} required></textarea><br/>
-        <label className="text-xl font-semibold text-pink">Enter Tags:</label><br/>
-        <input type='text' className="border border-gray-600 text-[15px] h-10 w-[584px] rounded-md focus bg-transparent mt-2 px-2" placeholder="e.g. #coding #development" value={tags} onChange={(e) => setTags(e.target.value)}/><br/>
+        <label className="text-sm md:text-[18px] font-semibold text-pink">Enter Your Prompt:</label><br/>
+        <textarea className="border border-gray-600 px-2 py-1 text-[15px] h-[100px] w-[360px] md:h-[180px] md:w-[584px] rounded-lg focus bg-transparent resize-none mb-3 mt-2" placeholder="e.g:Time-travel mishap" type="text" value={prompt} onChange={(e) => setPrompt(e.target.value)} required></textarea><br/>
+        <label className="text-sm md:text-[18px] font-semibold text-pink">Enter Tags:</label><br/>
+        <input type='text' className="border border-gray-600 text-[15px] h-10 w-[360px] md:w-[584px] rounded-md focus bg-transparent mt-2 px-2" placeholder="e.g. #coding #development" value={tags} onChange={(e) => setTags(e.target.value)}/><br/>
         
         <input
   className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light  cursor-pointer border-none"
@@ -94,7 +94,7 @@ const Create = () => {
   type="submit"
 />
         <button
-  className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light  cursor-pointer border-none ml-5"
+  className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-green cursor-pointer border-none ml-5"
   value="AI Suggestion"
   onClick={generate}>AI Suggestion</button>
        
