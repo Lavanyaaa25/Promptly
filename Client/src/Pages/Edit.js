@@ -17,6 +17,27 @@ const Edit = () => {
 
   }, []);
 
+  async function generate(e) {
+    e.preventDefault();
+    try{
+      const data = {
+        prompt: prompt
+      }
+      const response = await fetch('http://localhost:3030/generate',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(data),
+      });
+      const res = await response.json();
+      alert(res.message);
+    }catch(err){
+      alert("Erorr!!!");
+      console.log(err);
+    }
+  }
+
   async function handleSubmit (e){
     e.preventDefault();
     try{
@@ -85,6 +106,10 @@ const Edit = () => {
   value="Update"
   type="submit"
 />
+<button
+  className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light  cursor-pointer border-none ml-5"
+  value="AI Suggestion"
+  onClick={generate}>AI Suggestion</button>
        
       </form>
     </div>
