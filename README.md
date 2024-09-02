@@ -41,6 +41,18 @@ To get started with Promptly, follow these steps:
 7. **Open Your Browser**:
     Navigate to `http://localhost:3000` to start using Prompty!
 
+To build the docker image of promptly
+
+1. **Change the MongoDB Link to**:
+    ```bash
+    "mongodb://127.0.0.1:27017/Promptly"
+    ```
+
+2. **Run the following docker command**:
+    ```bash
+    docker-compose up
+    ```
+
 ## 🛠️ Technologies Used
 
 - **Frontend**: React.js, TailwindCSS
