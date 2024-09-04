@@ -1,6 +1,7 @@
 import {React,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
+import { Modal } from '../Components/Modal';
 
 const Create = () => {
   const [prompt, setPrompt]=useState('');
@@ -97,7 +98,7 @@ const Create = () => {
   className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-green cursor-pointer border-none ml-5"
   value="AI Suggestion"
   onClick={generate}>AI Suggestion</button>
-       
+       <Modal/>
       </form>
     </div>
   </div>

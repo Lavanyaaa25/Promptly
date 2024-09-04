@@ -29,7 +29,8 @@ router.post('/',authenticateToken, async (req,res) => {
         await user.save();
         res.json({status: 'ok', message: 'Your prompt has been published'})
     }catch(err){
-        res.json({status: 'error', message: 'An error occured'})
+        console.log(err);
+        res.json({status: 'error', message: 'This Prompt already exists'})
     }
 })
 

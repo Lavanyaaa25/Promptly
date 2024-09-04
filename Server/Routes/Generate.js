@@ -13,7 +13,7 @@ router.post('/', async (req,res)=>{
         res.json({status: 'ok', message: result.response.text()})
     }catch(err){
         console.log(err);
-        res.json({status: 'error', message: 'Some Error'});
+        res.json({status: 'error', message: 'Connection is Slow'});
     }
 });
 

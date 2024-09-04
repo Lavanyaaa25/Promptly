@@ -4,7 +4,7 @@ const PromptSchema = new mongoose.Schema(
 	{
 		id: { type: String, required: true, unique: true },
 		username: {type: String, required: true},
-		prompt: { type: String, required: true, unique: true },
+		prompt: { type: String, required: true},
 		tags: {type: Array}
 	},
 	{ collection: 'prompts' }
