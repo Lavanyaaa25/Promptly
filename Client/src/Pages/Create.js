@@ -1,111 +1,138 @@
-import {React,useState} from 'react';
+import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
-import { Modal } from '../Components/Modal';
+import Modal from '../Components/Modal'; // Import the Modal component
 
 const Create = () => {
-  const [prompt, setPrompt]=useState('');
-  const [tags, setTags]=useState('');
+  const [prompt, setPrompt] = useState('');
+  const [tags, setTags] = useState('');
+  const [modalOpen, setModalOpen] = useState(false); // Modal state
+  const [aiMessage, setAiMessage] = useState(''); // Store AI suggestion message
   const navigate = useNavigate();
 
   async function generate(e) {
     e.preventDefault();
-    try{
+    try {
       const data = {
-        prompt: prompt
-      }
-      const response = await fetch('http://localhost:3030/generate',{
+        prompt: prompt,
+      };
+      const response = await fetch('http://localhost:3030/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body:JSON.stringify(data),
+        body: JSON.stringify(data),
       });
       const res = await response.json();
-      alert(res.message);
-    }catch(err){
-      alert("Erorr!!!");
+      setAiMessage(res.message); // Set the AI suggestion message
+      setModalOpen(true); // Open the modal
+    } catch (err) {
+      setAiMessage("Error!!!");
+      setModalOpen(true); // Open the modal on error
       console.log(err);
     }
   }
 
-  async function handleSubmit (e){
+  async function handleSubmit(e) {
     e.preventDefault();
-    try{
+    try {
       const token = localStorage.getItem('token');
-      if(!token){
+      if (!token) {
         navigate('/');
         return;
       }
       const data = {
         id: new Date().getTime(),
         prompt: prompt,
-        tags: tags.split(" ")
-      }
+        tags: tags.split(' '),
+      };
       setPrompt('');
       setTags('');
-      const response = await fetch('http://localhost:3030/publish',{
+      const response = await fetch('http://localhost:3030/publish', {
         method: 'POST',
         headers: {
           'access-token': token,
           'Content-Type': 'application/json',
         },
-        body:JSON.stringify(data),
+        body: JSON.stringify(data),
       });
       const res = await response.json();
-      if(res.status === 'ok')
-      alert(res.message);
-    else
-      alert(res.message);
-    }
-    catch(err){
-      alert("Unauthorized Access");
+      alert(res.message); // Keeping alert for submission
+    } catch (err) {
+      alert('Unauthorized Access');
       navigate('/');
     }
-    
   }
 
-
   return (
-    <div className ="min-h-screen text-white relative flex flex-col gap-9" >
-
+    <div className="min-h-screen text-white relative flex flex-col gap-9">
       <Header />
-      
+
       {/* Hero section */}
-<div className="w-full flex justify-center items-center">
-  <div className="flex flex-col">
-    <div className="text-left ml-10">
-      <h1 className="text-lg md:text-5xl font-bold mb-2 md:mb-5 text-green">
-        Publish your AI Prompt
-      </h1>
-      <p className="text-sm md:text-[18px] mb-8 text-orange-red">
-        Unleash your creativity on a global canvas,<br/>Craft, share, and inspire with AI-powered prompts.
-      </p>
-    </div>
-    <div className="ml-10">
-      <form onSubmit={handleSubmit}>
-        <label className="text-sm md:text-[18px] font-semibold text-pink">Enter Your Prompt:</label><br/>
-        <textarea className="border border-gray-600 px-2 py-1 text-[15px] h-[100px] w-[360px] md:h-[180px] md:w-[584px] rounded-lg focus bg-transparent resize-none mb-3 mt-2" placeholder="e.g:Time-travel mishap" type="text" value={prompt} onChange={(e) => setPrompt(e.target.value)} required></textarea><br/>
-        <label className="text-sm md:text-[18px] font-semibold text-pink">Enter Tags:</label><br/>
-        <input type='text' className="border border-gray-600 text-[15px] h-10 w-[360px] md:w-[584px] rounded-md focus bg-transparent mt-2 px-2" placeholder="e.g. #coding #development" value={tags} onChange={(e) => setTags(e.target.value)}/><br/>
-        
-        <input
-  className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light  cursor-pointer border-none"
-  value="Publish"
-  type="submit"
-/>
-        <button
-  className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-green cursor-pointer border-none ml-5"
-  value="AI Suggestion"
-  onClick={generate}>AI Suggestion</button>
-       <Modal/>
-      </form>
-    </div>
-  </div>
-</div>
+      <div className="w-full flex justify-center items-center">
+        <div className="flex flex-col">
+          <div className="text-left ml-10">
+            <h1 className="text-lg md:text-5xl font-bold mb-2 md:mb-5 text-green">
+              Publish your AI Prompt
+            </h1>
+            <p className="text-sm md:text-[18px] mb-8 text-orange-red">
+              Unleash your creativity on a global canvas,
+              <br />
+              Craft, share, and inspire with AI-powered prompts.
+            </p>
+          </div>
+          <div className="ml-10">
+            <form onSubmit={handleSubmit}>
+              <label className="text-sm md:text-[18px] font-semibold text-pink">
+                Enter Your Prompt:
+              </label>
+              <br />
+              <textarea
+                className="border border-gray-600 px-2 py-1 text-[15px] h-[100px] w-[360px] md:h-[180px] md:w-[584px] rounded-lg focus bg-transparent resize-none mb-3 mt-2"
+                placeholder="e.g: Time-travel mishap"
+                type="text"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                required
+              ></textarea>
+              <br />
+              <label className="text-sm md:text-[18px] font-semibold text-pink">
+                Enter Tags:
+              </label>
+              <br />
+              <input
+                type="text"
+                className="border border-gray-600 text-[15px] h-10 w-[360px] md:w-[584px] rounded-md focus bg-transparent mt-2 px-2"
+                placeholder="e.g. #coding #development"
+                value={tags}
+                onChange={(e) => setTags(e.target.value)}
+              />
+              <br />
 
-    </div>
-  )
-}
+              <input
+                className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-orange hover:bg-orange-light cursor-pointer border-none"
+                value="Publish"
+                type="submit"
+              />
+              <button
+                className="font-semibold text-[18px] rounded-md h-[40px] w-[150px] mt-5 text-black bg-green cursor-pointer border-none ml-5"
+                onClick={generate}
+              >
+                AI Suggestion
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
 
-export default Create
+      {/* Modal component */}
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)} // Close modal when the close button is clicked
+        message={aiMessage} // Pass the AI suggestion to the modal
+      />
+    </div>
+  );
+};
+
+export default Create;
