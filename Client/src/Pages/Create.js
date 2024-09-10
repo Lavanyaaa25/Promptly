@@ -1,13 +1,14 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
-import Modal from '../Components/Modal'; // Import the Modal component
+import Modal from '../Components/Modal'; 
+import { toast, Toaster } from 'react-hot-toast'; // Import toast and Toaster
 
 const Create = () => {
   const [prompt, setPrompt] = useState('');
   const [tags, setTags] = useState('');
-  const [modalOpen, setModalOpen] = useState(false); // Modal state
-  const [aiMessage, setAiMessage] = useState(''); // Store AI suggestion message
+  const [modalOpen, setModalOpen] = useState(false); 
+  const [aiMessage, setAiMessage] = useState(''); 
   const navigate = useNavigate();
 
   async function generate(e) {
@@ -24,11 +25,11 @@ const Create = () => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      setAiMessage(res.message); // Set the AI suggestion message
-      setModalOpen(true); // Open the modal
+      setAiMessage(res.message);
+      setModalOpen(true); 
     } catch (err) {
       setAiMessage("Error!!!");
-      setModalOpen(true); // Open the modal on error
+      setModalOpen(true); 
       console.log(err);
     }
   }
@@ -57,9 +58,11 @@ const Create = () => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      alert(res.message); // Keeping alert for submission
+      // Use toast for notification instead of alert
+      toast.success(res.message);
     } catch (err) {
-      alert('Unauthorized Access');
+      // Show unauthorized access notification using toast
+      toast.error('Unauthorized Access');
       navigate('/');
     }
   }
@@ -128,8 +131,20 @@ const Create = () => {
       {/* Modal component */}
       <Modal
         isOpen={modalOpen}
-        onClose={() => setModalOpen(false)} // Close modal when the close button is clicked
-        message={aiMessage} // Pass the AI suggestion to the modal
+        onClose={() => setModalOpen(false)}
+        message={aiMessage} 
+      />
+
+      {/* Toaster component */}
+      <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            background: 'rgba(244, 191, 85, 0.8)',
+            color: 'black',
+            fontWeight: 600,
+          },
+        }}
       />
     </div>
   );
