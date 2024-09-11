@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FiCopy, FiCheckCircle } from 'react-icons/fi';
 import { IoBookmarkOutline, IoBookmark } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast, Toaster } from 'react-hot-toast'; 
 
 const PromptCard = ({ id, promptText, userName, tags }) => {
   const [copied, setCopied] = useState(false); // State to track if text is copied
@@ -41,14 +42,16 @@ const PromptCard = ({ id, promptText, userName, tags }) => {
             }
           });
           const data = await response.json();
-          alert(data.message); 
+          toast.success(data.message);
+
     }catch(err){
-      alert('Unauthorized access')
+      toast.error("Unauthorized access");
       navigate('/')
     } 
   };
 
   return (
+    <div>
     <div
       className="border rounded-lg p-4 w-96 h-72 mx-auto mt-4 relative overflow-hidden flex flex-col justify-between"
       style={{
@@ -89,7 +92,19 @@ const PromptCard = ({ id, promptText, userName, tags }) => {
           </div>
         ))}
       </div>
+   </div>
+   <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            background: 'rgba(182, 204, 192, 1)',
+            color: 'black',
+            fontWeight: 600,
+          },
+        }}
+      />
     </div>
+    
   );
 };
 

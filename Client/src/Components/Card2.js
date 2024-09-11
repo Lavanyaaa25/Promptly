@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiEdit2, FiTrash } from 'react-icons/fi';
+import { toast, Toaster } from 'react-hot-toast'; 
 // import { IoBookmarkOutline } from 'react-icons/io5';
 
 const EditablePromptCard = ({ type, id, promptText, userName, tags}) => {
@@ -19,8 +20,10 @@ const EditablePromptCard = ({ type, id, promptText, userName, tags}) => {
               }
             });
             const data = await response.json();
-            alert(data.message);  
-            window.location.reload();
+            toast.success(data.message);
+            setTimeout(() => {
+              window.location.reload();
+            }, 800);  
         }else{
           const response = await fetch(`http://localhost:3030/save/unsave/${id}`, {
             method: 'GET',
@@ -30,16 +33,21 @@ const EditablePromptCard = ({ type, id, promptText, userName, tags}) => {
             }
           });
           const data = await response.json();
-          alert(data.message);  
-          window.location.reload();
+          toast.error(data.message);  
+          setTimeout(() => {
+            window.location.reload();
+          }, 800);
         }
       }
       catch(err){
-        alert('Unauthorized access')
-        navigate('/')
+        toast.error("Unauthorized access")
+        setTimeout(() => {
+          navigate('/')
+        }, 2000);
       }
   }
   return (
+    <div>
     <div
       className="border rounded-lg p-4 w-96 h-72 mx-auto mt-4 relative overflow-hidden flex flex-col justify-between"
       style={{
@@ -77,6 +85,17 @@ const EditablePromptCard = ({ type, id, promptText, userName, tags}) => {
           </div>
         ))}
       </div>
+    </div>
+    <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            background:'rgba(250, 225, 221, 1)',
+            color: 'black',
+            fontWeight: 600,
+          },
+        }}
+      />
     </div>
   );
 };

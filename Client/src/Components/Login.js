@@ -1,6 +1,7 @@
 import {React, useState} from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
+import { toast, Toaster } from 'react-hot-toast'; 
 
 const Login = ({formType, setFormType}) => {
 
@@ -33,14 +34,16 @@ const Login = ({formType, setFormType}) => {
         if(data.status === 'ok'){
           localStorage.removeItem('token');
           localStorage.setItem('token', data.user);
-          alert(data.message);
-          navigate('/explore');
+          toast.success(data.message);
+          setTimeout(() => {
+            navigate('/explore');
+          }, 3000); 
         }else{
-          alert(data.message);
+          toast.error(data.message);
         }
     }
     catch(err){
-      alert("ERROR!!!");
+      toast.error("ERROR!!!");
     }
   }
 
@@ -121,6 +124,16 @@ const Login = ({formType, setFormType}) => {
         Create a new account. <span onClick={toggleForm} className="text-white underline cursor-pointer">Sign Up</span>
       </motion.p>
     </motion.form>
+    <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            background: 'rgba(201, 174, 243, 1)',
+            color: 'black',
+            fontWeight: 600,
+          },
+        }}
+      />
   </motion.div>
   )
 }

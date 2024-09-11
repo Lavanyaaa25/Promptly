@@ -74,15 +74,17 @@ const Edit = () => {
         toast.success(res.message);
     else
     toast.error(res.message);
-    navigate(`/users/${userName}`)
+    setTimeout(() => {
+      navigate(`/users/${userName}`)
+    }, 3000);  
     }
     catch(err){
       toast.error("Unauthorized Access");
-      navigate('/');
+      setTimeout(() => {
+        navigate('/');
+      }, 3000); 
     }
-    
   }
-
 
   return (
     <div className ="min-h-screen text-white relative flex flex-col gap-9" >
