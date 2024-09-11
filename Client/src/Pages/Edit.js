@@ -1,10 +1,14 @@
 import {React,useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
+import Modal from '../Components/Modal';
+import { toast, Toaster } from 'react-hot-toast';  
 const Edit = () => {
   const [prompt, setPrompt]=useState('');
   const [promptId, setPromptId]=useState('');
   const [userName,setUserName] = useState('');
+  const [modalOpen, setModalOpen] = useState(false); 
+  const [aiMessage, setAiMessage] = useState(''); 
   const [tags, setTags]=useState('');
   const navigate = useNavigate();
 
@@ -31,9 +35,11 @@ const Edit = () => {
         body:JSON.stringify(data),
       });
       const res = await response.json();
-      alert(res.message);
+      setAiMessage(res.message); 
+      setModalOpen(true); 
     }catch(err){
-      alert("Erorr!!!");
+      setAiMessage("Error!!!");
+      setModalOpen(true);
       console.log(err);
     }
   }
@@ -65,13 +71,13 @@ const Edit = () => {
       });
       const res = await response.json();
       if(res.status === 'ok')
-      alert(res.message);
+        toast.success(res.message);
     else
-      alert(res.message);
+    toast.error(res.message);
     navigate(`/users/${userName}`)
     }
     catch(err){
-      alert("Unauthorized Access");
+      toast.error("Unauthorized Access");
       navigate('/');
     }
     
@@ -115,7 +121,21 @@ const Edit = () => {
     </div>
   </div>
 </div>
-
+<Modal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)} 
+        message={aiMessage} 
+      />
+       <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            background: 'rgba(244, 191, 85, 0.8)',
+            color: 'black',
+            fontWeight: 600,
+          },
+        }}
+      />
 
     </div>
   )
