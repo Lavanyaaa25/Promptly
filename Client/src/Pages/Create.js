@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
 import Modal from '../Components/Modal'; 
-import { toast, Toaster } from 'react-hot-toast'; // Import toast and Toaster
+import { toast, Toaster } from 'react-hot-toast'; 
 
 const Create = () => {
   const [prompt, setPrompt] = useState('');
@@ -58,10 +58,8 @@ const Create = () => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      // Use toast for notification instead of alert
       toast.success(res.message);
     } catch (err) {
-      // Show unauthorized access notification using toast
       toast.error('Unauthorized Access');
       navigate('/');
     }
