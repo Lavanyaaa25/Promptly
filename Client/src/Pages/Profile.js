@@ -8,6 +8,7 @@ import PromptCard2 from '../Components/Card1';
 import PromptCard3 from '../Components/Card3';
 import Photo from '../Assets/user-account.png';
 import { faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { toast, Toaster } from 'react-hot-toast'; 
 
 const UserProfile = () => {
   const [isRegistered, setIsRegistered] = useState(true);
@@ -49,8 +50,10 @@ const UserProfile = () => {
           }
       }
       catch(err){
-        alert("Unauthorized Access");
-        navigate('/');
+        toast.error("Unauthorized access!");
+        setTimeout(() => {
+          navigate('/');
+        }, 1500);
       }
     }
     getDetails();
@@ -58,7 +61,10 @@ const UserProfile = () => {
 
   const handleSignOut = () => {
         localStorage.removeItem('token');
-        navigate('/');
+        toast.success("Logged out successfully!");
+        setTimeout(() => {
+          navigate('/');
+        }, 1500);
       };
   
 
@@ -210,6 +216,16 @@ const UserProfile = () => {
             ))
           }
         </div>
+        <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            background: 'rgba(201, 174, 243, 1)',
+            color: 'black',
+            fontWeight: 600,
+          },
+        }}
+      />  
       </div>
     );
     }

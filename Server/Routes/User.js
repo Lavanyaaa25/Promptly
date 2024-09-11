@@ -56,7 +56,7 @@ router.post('/login', async (req,res) => {
                 },
                 process.env.ACCESS_TOKEN_SECRET
             );
-            res.json({ status: 'ok', message: 'Logged in', user: token });
+            res.json({ status: 'ok', message: `Welcome ${test.username}!`, user: token });
         } else {
             res.json({ status: 'error', message: 'Invalid email or password' });
         }
