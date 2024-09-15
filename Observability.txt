@@ -1,0 +1,100 @@
+To access the metrics:
+http://localhost:3030/metrics
+
+
+PROMETHEUS:
+
+To scrape the metrics from Prometheus:
+1. Download Prometheus from the official site.
+Choose the appropriate version for your operating system (Linux, Windows, macOS).
+
+2. Extract the Downloaded zip File
+
+3. Navigate to the Prometheus Directory
+Open a terminal or command prompt and change to the directory where Prometheus was extracted:
+cd prometheus-<version>
+
+4. Configure Prometheus
+Open the prometheus.yml configuration file in a text editor.
+
+code prometheus.yml
+
+Add your scrape configuration:
+
+global:
+  scrape_interval: 15s  # How often to scrape targets
+
+scrape_configs:
+  - job_name: 'express-app'
+    static_configs:
+      - targets: ['localhost:3030']  
+
+This configuration sets up Prometheus to scrape metrics from http://localhost:3030/metrics every 15 seconds.
+
+5. Start Prometheus server
+ .\prometheus.exe --config.file=prometheus.yml
+
+6. Access the Prometheus Web UI
+http://localhost:9090 (default)
+
+
+GRAFANA
+
+Download and Install Grafana:
+
+Download the Windows MSI installer for Grafana.
+Run the MSI installer you downloaded.
+
+
+Start Grafana:
+
+If Installed via MSI:
+Grafana should start automatically as a Windows service. You can verify or restart it through the Services app.
+
+To check if it's running, open Services:
+Press Win + R, type services.msc, and press Enter.
+
+Look for Grafana in the list of services.
+Ensure its status is Running. If it's not running, right-click on Grafana and select Start.
+
+The default port is set to 3000, change it using the following steps:
+
+1. Locate the Grafana Configuration File
+Open the Grafana Installation Directory:
+
+By default, if installed via the MSI installer, Grafana is usually located at C:\Program Files\GrafanaLabs\grafana.
+
+Find the configuration file which is typically named grafana.ini.
+
+cd C:\Program Files\GrafanaLabs\grafana\conf\grafana.ini
+
+2. Edit the Configuration File
+Open the Configuration File:
+
+Use a text editor like Notepad or Notepad++ to open grafana.ini. (open as administrator)
+Change the Port Number:
+
+Ctrl+F
+http_port = 8080 //change here
+
+Save your changes and close the text editor.
+
+3.Restart Grafana
+
+Press Win + R, type services.msc, and press Enter.
+Find Grafana in the list of services.
+Right-click on Grafana and select Restart.
+
+
+
+BUILD DASHBOARD
+go to the url:
+http://localhost:8080
+Add your first data source
+
+Select Prometheus
+Provide a name example:prometheus
+Provide the Prometheus server url: http://localhost:9090
+Click on save and test.
+
+You can build your own dashboard to visualize the metrics now.
