@@ -94,6 +94,9 @@ To get started with Promptly, follow these steps:
 <h2>Profile</h2>
 <img width="960" alt="Screenshot 2024-03-22 221555" src="https://github.com/VaibhavSingh87/Promptly/assets/114211427/747fbe15-4a6c-4d20-bed9-2ef6ad5cdb9a">
 
+<h1>Observability</h1>
+<p>For building your dashboard in grafana for the metrics scraped by the prometheus server, refer to the Observability.txt file</p>
+
 ## 🤝 Contributing
 
 We welcome contributions from the community! Here's how you can help:
@@ -102,3 +105,4 @@ We welcome contributions from the community! Here's how you can help:
 2. Create a new branch for your feature or bug fix.
 3. Make your changes.
 4. Submit a pull request.
+
