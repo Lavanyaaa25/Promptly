@@ -58,6 +58,7 @@ To get started with Promptly, follow these steps:
 - **Frontend**: React.js, TailwindCSS
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
+- **Observability**: Prometheus, Grafana
 
 
 
