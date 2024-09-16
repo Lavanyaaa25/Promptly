@@ -96,9 +96,11 @@ To get started with Promptly, follow these steps:
 
 <h1>Observability</h1>
 <p>For building your dashboard in grafana for the metrics scraped by the prometheus server, refer to the Observability.txt file</p>
+<h2>Sample Dashboard</h2>
+<img width="960" src="https://github.com/user-attachments/assets/724de803-fc30-407b-a64a-2aa71ca51ded">
+
 
 ## 🤝 Contributing
-
 We welcome contributions from the community! Here's how you can help:
 
 1. Fork the repository.
