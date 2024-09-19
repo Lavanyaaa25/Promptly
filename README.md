@@ -58,6 +58,7 @@ To get started with Promptly, follow these steps:
 - **Frontend**: React.js, TailwindCSS
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
+- **Observability**: Prometheus, Grafana
 
 
 
@@ -94,11 +95,20 @@ To get started with Promptly, follow these steps:
 <h2>Profile</h2>
 <img width="960" alt="Screenshot 2024-03-22 221555" src="https://github.com/VaibhavSingh87/Promptly/assets/114211427/747fbe15-4a6c-4d20-bed9-2ef6ad5cdb9a">
 
-## 🤝 Contributing
+<h1>Metrics</h1>
+<img width="960" src="https://github.com/user-attachments/assets/e156d082-e30b-4bb9-9b79-3b5e69ad2e93">
 
+<h1>Observability</h1>
+<p>For building your dashboard in grafana for the metrics scraped by the prometheus server, refer to the Observability.txt file</p>
+<h2>Sample Dashboard</h2>
+<img width="960" src="https://github.com/user-attachments/assets/724de803-fc30-407b-a64a-2aa71ca51ded">
+
+## 🤝 Contributing
 We welcome contributions from the community! Here's how you can help:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
+
 3. Make your changes.
 4. Submit a pull request.
+
